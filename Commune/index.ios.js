@@ -5,6 +5,7 @@
  */
 
 import React, { Component } from 'react';
+import * as firebase from 'firebase';
 import {
   AppRegistry,
   StyleSheet,
@@ -12,23 +13,26 @@ import {
   View
 } from 'react-native';
 
-class Commune extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
-    );
-  }
+const firebaseConfig = {
+    apiKey: "AIzaSyCVzI737kOTIiNVwSPvvh1cZ7-Rt0bq9XA",
+    authDomain: "commune-bc88a.firebaseapp.com",
+    databaseURL: "https://commune-bc88a.firebaseio.com",
+    storageBucket: "commune-bc88a.appspot.com",
+    messagingSenderId: "10565440446"
+};
+
+const firebaseApp = firebase.initializeApp(firebaseConfig);
+
+class CommuneApp extends Component {
+   render() {
+      return (
+         <View style={styles.container}>
+            <Text style={styles.welcome}>
+               Commune App!
+            </Text>
+         </View>
+      );
+   }
 }
 
 const styles = StyleSheet.create({
@@ -50,4 +54,4 @@ const styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('Commune', () => Commune);
+AppRegistry.registerComponent('Commune', () => CommuneApp);
