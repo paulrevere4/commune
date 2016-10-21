@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/Rabi/Desktop/commune/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
+        <dex dex="/Users/Rabi/Desktop/commune/android/app/build/intermediates/pre-dexed/debug/classes-f00c0fa95c21854448622d427a61bb970f8f5682.jar" />
+    </item>
+    <item
+        jar="/Users/Rabi/Desktop/commune/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-okhttp3/0.11.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="2b8a01ad9da5d26d0067894c22e87597bca2c500">
+        <dex dex="/Users/Rabi/Desktop/commune/android/app/build/intermediates/pre-dexed/debug/classes-9ecfb1d4628b8191e120f0cd84b46fe8c488d8a5.jar" />
+    </item>
+    <item
+        jar="/Users/Rabi/Desktop/commune/android/app/build/intermediates/exploded-aar/com.facebook.soloader/soloader/0.1.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="8f615bca00639150c9eb6175d4b5471193f70794">
+        <dex dex="/Users/Rabi/Desktop/commune/android/app/build/intermediates/pre-dexed/debug/classes-43cba19e8e51d13c6ac9e733e4484ebe359a1452.jar" />
+    </item>
+    <item
+        jar="/Users/Rabi/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.9.0/f824591a0016efbaeddb8300bee54832a1398cfa/okio-1.9.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="f824591a0016efbaeddb8300bee54832a1398cfa">
+        <dex dex="/Users/Rabi/Desktop/commune/android/app/build/intermediates/pre-dexed/debug/okio-1.9.0-a1516ccf67b32a17fb34550616fd9193c08b7c43.jar" />
+    </item>
+    <item
+        jar="/Users/Rabi/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-tasks/1.4.0/d85884acf6810a3bbbecb587f239005cbc846dc4/bolts-tasks-1.4.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
+        <dex dex="/Users/Rabi/Desktop/commune/android/app/build/intermediates/pre-dexed/debug/bolts-tasks-1.4.0-0f5f1362064d919c367b97b8a793d60a4a75586d.jar" />
+    </item>
+    <item
+        jar="/Users/Rabi/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="/Users/Rabi/Desktop/commune/android/app/build/intermediates/pre-dexed/debug/library-2.4.0-5774dc8ba4a9f3bf9a36d8657ac36936f018b4b1.jar" />
+    </item>
+    <item
+        jar="/Users/Rabi/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.2.3/1a0113da2cab5f4c216b4e5e7c1dbfaa67087e14/jackson-core-2.2.3.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="1a0113da2cab5f4c216b4e5e7c1dbfaa67087e14">
+        <dex dex="/Users/Rabi/Desktop/commune/android/app/build/intermediates/pre-dexed/debug/jackson-core-2.2.3-a560d649638bc68e7da009cfe006e33344b96171.jar" />
+    </item>
+    <item
+        jar="/Users/Rabi/Desktop/commune/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.1/jars/libs/internal_impl-23.2.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="607a3d0b8013b4ccbfeb0b7cb293351994e021fb">
+        <dex dex="/Users/Rabi/Desktop/commune/android/app/build/intermediates/pre-dexed/debug/internal_impl-23.2.1-b09c70683113b065b245883da46e1cce8ea05d14.jar" />
+    </item>
+    <item
+        jar="/Users/Rabi/Desktop/commune/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-base/0.11.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="ca63c521b5745ae9a09629d7ca67ff6bc2a967fe">
+        <dex dex="/Users/Rabi/Desktop/commune/android/app/build/intermediates/pre-dexed/debug/classes-b78e0d6a1b59de6d2a7b5dbb6be1794dbd3f9663.jar" />
+    </item>
+    <item
+        jar="/Users/Rabi/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp-urlconnection/3.4.1/63994437f62bc861bc20c605d12962f7246116d1/okhttp-urlconnection-3.4.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="63994437f62bc861bc20c605d12962f7246116d1">
+        <dex dex="/Users/Rabi/Desktop/commune/android/app/build/intermediates/pre-dexed/debug/okhttp-urlconnection-3.4.1-0b61050d26ce725ac395591b8d3b74bc61964052.jar" />
+    </item>
+    <item
+        jar="/Users/Rabi/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="6975da39a7040257bd51d21a231b76c915872d38">
+        <dex dex="/Users/Rabi/Desktop/commune/android/app/build/intermediates/pre-dexed/debug/javax.inject-1-1efd71e62261ecdf1291fabef5b3bd703c10746f.jar" />
+    </item>
+    <item
+        jar="/Users/Rabi/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.2.1/support-annotations-23.2.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="ccb693bc0774fcb637246f7360de25b4af7df318">
+        <dex dex="/Users/Rabi/Desktop/commune/android/app/build/intermediates/pre-dexed/debug/support-annotations-23.2.1-8c6ea5fabf822038bd14e622354dddf11d79cee2.jar" />
+    </item>
+    <item
+        jar="/Users/Rabi/Desktop/commune/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.35.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="cdc91752c90040ec7871c44963c63c751b1fa94b">
+        <dex dex="/Users/Rabi/Desktop/commune/android/app/build/intermediates/pre-dexed/debug/classes-4fa59b50f2f1ae2d572c2d404f5d108a0bc9f635.jar" />
+    </item>
+    <item
+        jar="/Users/Rabi/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp-ws/3.4.1/8ace66ef7002d98f633377c9e67daeeb196d8c3b/okhttp-ws-3.4.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="8ace66ef7002d98f633377c9e67daeeb196d8c3b">
+        <dex dex="/Users/Rabi/Desktop/commune/android/app/build/intermediates/pre-dexed/debug/okhttp-ws-3.4.1-7620f5c88a2ce4ae643b54653c9e1096132e9f21.jar" />
+    </item>
+    <item
+        jar="/Users/Rabi/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.4.1/c7c4f9e35c2fd5900da24f9872e3971801f08ce0/okhttp-3.4.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="c7c4f9e35c2fd5900da24f9872e3971801f08ce0">
+        <dex dex="/Users/Rabi/Desktop/commune/android/app/build/intermediates/pre-dexed/debug/okhttp-3.4.1-e31c8409b628aeb23783184c7b0c4962acc40be9.jar" />
+    </item>
+    <item
+        jar="/Users/Rabi/Desktop/commune/android/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="4356e230a981d1bbf047d848b91bc0d9b7c5bacc">
+        <dex dex="/Users/Rabi/Desktop/commune/android/app/build/intermediates/pre-dexed/debug/classes-c9c595fc765b0efca036e9a37b060c62a2904492.jar" />
+    </item>
+    <item
+        jar="/Users/Rabi/Desktop/commune/android/app/build/intermediates/exploded-aar/com.facebook.fresco/drawee/0.11.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="1137942adeb03984c1311b662363dd38fc238fd3">
+        <dex dex="/Users/Rabi/Desktop/commune/android/app/build/intermediates/pre-dexed/debug/classes-391041f28e57835e17a27e8acf19f0d6bbf6b40b.jar" />
+    </item>
+    <item
+        jar="/Users/Rabi/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.0/5871fb60dc68d67da54a663c3fd636a10a532948/jsr305-3.0.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="5871fb60dc68d67da54a663c3fd636a10a532948">
+        <dex dex="/Users/Rabi/Desktop/commune/android/app/build/intermediates/pre-dexed/debug/jsr305-3.0.0-77f93ffdf7c4c2ebf1c26e1e6c011f580e6bad09.jar" />
+    </item>
+    <item
+        jar="/Users/Rabi/Desktop/commune/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="3be474b1b21b31cf2fa93fe6bd641ae108d96452">
+        <dex dex="/Users/Rabi/Desktop/commune/android/app/build/intermediates/pre-dexed/debug/classes-4545c0fa41ab2f8a8c78f84ffd21ccfeb194845f.jar" />
+    </item>
+    <item
+        jar="/Users/Rabi/Desktop/commune/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.11.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="3341b66c54367e777a0647e2db96c045329bfeab">
+        <dex dex="/Users/Rabi/Desktop/commune/android/app/build/intermediates/pre-dexed/debug/classes-fed6035c1fe67c42ba2a53c978d100a2e5659046.jar" />
+    </item>
+    <item
+        jar="/Users/Rabi/Desktop/commune/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fresco/0.11.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="d31aadf33187c37a7cd63dc1b769f8c6e33f78c3">
+        <dex dex="/Users/Rabi/Desktop/commune/android/app/build/intermediates/pre-dexed/debug/classes-258b3c7822d0b09e040051df46753ed83287415d.jar" />
+    </item>
+    <item
+        jar="/Users/Rabi/Desktop/commune/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fbcore/0.11.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="98786c1770b531b9194fb6448b2a2692c64074b6">
+        <dex dex="/Users/Rabi/Desktop/commune/android/app/build/intermediates/pre-dexed/debug/classes-7ddb0ae9245777de22769d710a69870973b61ccf.jar" />
+    </item>
+    <item
+        jar="/Users/Rabi/Desktop/commune/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.35.0/jars/libs/infer-annotations-1.5.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="db2c76df02d034e8d49bca2a69af788a787b46b2">
+        <dex dex="/Users/Rabi/Desktop/commune/android/app/build/intermediates/pre-dexed/debug/infer-annotations-1.5-5f60b13c9b7055c89adb15319b88fd371ffe588e.jar" />
+    </item>
+
+</items>
