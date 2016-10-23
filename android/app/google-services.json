@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "994259110520",
+    "firebase_url": "https://commune-b5309.firebaseio.com",
+    "project_id": "commune-b5309",
+    "storage_bucket": "commune-b5309.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:994259110520:android:c17f0f6bd39c6d5e",
+        "android_client_info": {
+          "package_name": "xyz.communeapp.commune"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "994259110520-d212sefodnno5hemmgfnv44cq5coojj6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "xyz.communeapp.commune",
+            "certificate_hash": "89349300D92FFAB23A2568CBCC900854D5B5D785"
+          }
+        },
+        {
+          "client_id": "994259110520-kci8f9btqht45123i9hh639dsphbmqcs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChqzS1m9wDlE9pEVpiyc2NU9ass6dxSA4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "994259110520-kci8f9btqht45123i9hh639dsphbmqcs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
