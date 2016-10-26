@@ -1,0 +1,11 @@
+language: android
+
+android:
+  components:
+    # BuildTools
+    - build-tools-25.1.0
+    # SDK
+    - android-25
+
+script:
+    - ./gradlew
