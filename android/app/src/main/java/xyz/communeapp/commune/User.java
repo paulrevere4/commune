@@ -13,7 +13,7 @@ public class User {
     private String uid;
     private DatabaseReference databaseRef;
 
-    public User(){
+    public User() {
 
     }
 
