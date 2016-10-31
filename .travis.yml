@@ -8,4 +8,5 @@ android:
     - android-25
 
 script:
-    - ./android/gradlew
+    - cd android
+    - ./gradlew clean build
