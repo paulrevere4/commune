@@ -16,42 +16,43 @@ public class LoginRegisterActivity extends AppCompatActivity {
     private FirebaseDatabase mDatabase;
     private FirebaseUser mFirebaseUser;
 
-
-    private void getUserInfo() {
-        mDatabase = FirebaseDatabase.getInstance();
-        mFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        mUser = new User(mFirebaseUser, mDatabase);
+    // Start the main activity of the app
+    private void startMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        intent.putExtra("User", mUser.getUid());
+        intent.putExtra("User", mUser.getUid()); // Send user's name to the main activity
         startActivity(intent);
-        finish();
+        finish(); // close the current activity
     }
 
+    private void getUserInformation() {
+        // If already logged in, get user information from database
+        mDatabase = FirebaseDatabase.getInstance();
+        mFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        mUser = new User(mFirebaseUser, mDatabase); // Create a user class instance
+    }
+
+    // Callback function for the login activity
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RC_SIGN_IN) {
             if (resultCode == RESULT_OK) {
-                getUserInfo();
+                // If login succeeded, get database and user information
+                getUserInformation();
+                startMainActivity();
             } else {
+                // Close the activity if login was cancelled or failed
                 finish();
             }
         }
     }
 
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
-            getUserInfo();
-        }
-    }
-
     @Override
     public void onResume() {
-        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
-        } else {
+        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+            // If the user is not logged in, start the login activity
             startActivityForResult(
                     AuthUI.getInstance()
                             .createSignInIntentBuilder()
@@ -61,13 +62,21 @@ public class LoginRegisterActivity extends AppCompatActivity {
                                     AuthUI.FACEBOOK_PROVIDER)
                             .build(),
                     RC_SIGN_IN);
+        }else{
+            // If already logged in, get user information from database
+            getUserInformation();
+            startMainActivity(); // Move onto the main activity after getting user information
         }
         super.onResume();
     }
 
     @Override
     public void onBackPressed() {
-        //super.onDestroy();
         finish();
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 }
