@@ -1,9 +1,7 @@
 sudo: required
 
-language: android
-
 services:
   - docker
 
 script:
-    - docker build -t android_app android/
+  - docker build -t android_app android/
