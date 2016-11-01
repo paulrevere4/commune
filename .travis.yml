@@ -1,15 +1,9 @@
+sudo: required
+
 language: android
 
-jdk:
-  - oraclejdk8
-
-android:
-  components:
-    # BuildTools
-    - build-tools-25.1.0
-    # SDK
-    - android-25
+services:
+  - docker
 
 script:
-    - cd android
-    - ./gradlew clean build
+    - docker build -t android_app android/
