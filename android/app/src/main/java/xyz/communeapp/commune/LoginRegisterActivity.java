@@ -3,7 +3,6 @@ package xyz.communeapp.commune;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
@@ -18,15 +17,15 @@ public class LoginRegisterActivity extends AppCompatActivity {
     private FirebaseUser mFirebaseUser;
 
 
-    private void getUserInfo(){
+    private void getUserInfo() {
         mDatabase = FirebaseDatabase.getInstance();
         mFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        mUser = new User(mFirebaseUser,mDatabase);
+        mUser = new User(mFirebaseUser, mDatabase);
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        intent.putExtra("User",mUser.getUid());
+        intent.putExtra("User", mUser.getUid());
         startActivity(intent);
         finish();
     }
@@ -36,7 +35,7 @@ public class LoginRegisterActivity extends AppCompatActivity {
         if (requestCode == RC_SIGN_IN) {
             if (resultCode == RESULT_OK) {
                 getUserInfo();
-            }else{
+            } else {
                 finish();
             }
         }
@@ -44,15 +43,14 @@ public class LoginRegisterActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(FirebaseAuth.getInstance().getCurrentUser() != null){
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
             getUserInfo();
         }
     }
 
     @Override
-    public void onResume(){
-        Log.e("OnResume","Resumed!");
-        if(FirebaseAuth.getInstance().getCurrentUser() != null){
+    public void onResume() {
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
         } else {
             startActivityForResult(
                     AuthUI.getInstance()
@@ -68,7 +66,7 @@ public class LoginRegisterActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
         //super.onDestroy();
         finish();
     }
