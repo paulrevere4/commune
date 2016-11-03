@@ -6,7 +6,4 @@ The project is built on Travis CI with each push to this repository and with eac
 ```
 $ docker build -t android_app android/
 ```
-To test the ios build, run the following from the project's top directory, you must have docker installed.
-```
-$ docker build -t ios_app ios/
-```
+Currently there is no way test the ios build without xcode (because Apple is evil).
