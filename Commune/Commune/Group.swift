@@ -35,6 +35,8 @@ class Group: NSObject {
 		let usersRef = FIRDatabase.database().reference(withPath: "Users")
 		usersRef.child(createdBy.uid).child("Groups").child(groupRef.key).setValue(["Name" : name])
 		
+		// Find if each member to add exists in the database. Get the users user id and then add them
+		// as a memeber to the group.
 		for member in members {
 			usersRef.queryOrdered(byChild: "email").queryEqual(toValue: member).observe(.value, with: { snapshot in
 				
