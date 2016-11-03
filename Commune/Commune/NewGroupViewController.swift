@@ -12,10 +12,7 @@ import Firebase
 class NewGroupViewController: UIViewController {
 	
 	// MARK: Properties
-	@IBOutlet weak var groupNameLabel: UILabel!
-	@IBOutlet weak var groupMembersTextView: UITextView!
 	@IBOutlet weak var groupNameTextField: UITextField!
-	@IBOutlet weak var groupDescriptionTextField: UITextField!
 	@IBOutlet weak var groupMembersTextField: UITextField!
 	
 	var currentUser: FIRUser? = nil
@@ -36,16 +33,14 @@ class NewGroupViewController: UIViewController {
     }
 	
 	@IBAction func createGroupButtonPressed(_ sender: Any) {
-		print("CREATE GROUP BUTTON PRESSED")
-		
-		print(self.groupNameTextField.text!)
-		print(self.currentUser!.uid)
-		
+
+		// Remove all whitespaces from the members to add list
 		let trimmed = self.groupMembersTextField.text?.replacingOccurrences(of: " ", with: "")
-		
+		// Split the string by , into an array
 		let membersToAddArray = trimmed?.components(separatedBy: ",")
-		
+		// Create a new Group object based on the data
 		let newGroup = Group(name: self.groupNameTextField.text!, createdBy: self.currentUser!, members: membersToAddArray!)
+		// Add the created group info the the database
 		newGroup.addGroupToFirebase()
 		
 		

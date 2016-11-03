@@ -54,8 +54,6 @@ class Group: NSObject {
 			})
 		}
 		
-		
-	
 		return true
 	}
 	
