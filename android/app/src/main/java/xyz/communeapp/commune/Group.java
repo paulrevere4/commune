@@ -27,8 +27,4 @@ public class Group {
 
         database.getReference().child("Users").child(creator.getUid()).child("Groups").push().child("Name").setValue(name);
     }
-
-    public String getName(){
-        return this.name;
-    }
 }

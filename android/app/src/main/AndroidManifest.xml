@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".LoginRegisterActivity" />
-        <activity android:name=".AddGroupActivity"></activity>
+        <activity android:name=".AddGroupActivity" />
+        <activity android:name=".CreateIssueActivity"></activity>
     </application>
 
 </manifest>

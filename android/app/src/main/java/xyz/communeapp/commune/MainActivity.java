@@ -65,6 +65,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void startCreateIssueActivity() {
+        Intent intent = new Intent(this, CreateIssueActivity.class);
+        startActivity(intent);
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -179,17 +184,27 @@ public class MainActivity extends AppCompatActivity {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             TextView textView = (TextView) rootView.findViewById(R.id.section_label);
             FloatingActionButton fab = (FloatingActionButton) rootView.findViewById(R.id.fab);
-            if((getArguments().getInt(ARG_SECTION_NUMBER)) == 2){
-                fab.setVisibility(View.VISIBLE);
-            }else{
+            if((getArguments().getInt(ARG_SECTION_NUMBER)) == 3){
                 fab.setVisibility(View.INVISIBLE);
-            }
-            fab.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    ((MainActivity)getActivity()).startCreateGroupActivity();
+            }else{
+                fab.setVisibility(View.VISIBLE);
+                if((getArguments().getInt(ARG_SECTION_NUMBER)) == 1){
+                    fab.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            ((MainActivity)getActivity()).startCreateIssueActivity();
+                        }
+                    });
                 }
-            });
+                if((getArguments().getInt(ARG_SECTION_NUMBER)) == 2){
+                    fab.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            ((MainActivity)getActivity()).startCreateGroupActivity();
+                        }
+                    });
+                }
+            }
             textView.setText("Hello "+ user.getDisplayName()+getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
             return rootView;
         }

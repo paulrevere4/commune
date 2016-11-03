@@ -10,17 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="xyz.communeapp.commune.AddGroupActivity">
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="52dp"
-        android:id="@+id/groupNameEditText"
-        android:textAlignment="textStart"
-        android:hint="Name" />
 
     <TextView
         android:text="Create Group"
@@ -32,6 +21,18 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:id="@+id/createGroupTitle" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_below="@+id/createGroupTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="52dp"
+        android:id="@+id/issueNameEditText"
+        android:textAlignment="textStart"
+        android:hint="Name" />
 
     <Button
         android:text="CREATE"
@@ -55,6 +56,6 @@
         android:id="@+id/groupUsersEditText"
         android:hint="Add users with emails separated by comma"
         android:textAlignment="textStart"
-        android:layout_below="@+id/groupNameEditText"
-        android:layout_alignStart="@+id/groupNameEditText" />
+        android:layout_below="@+id/issueNameEditText"
+        android:layout_alignStart="@+id/issueNameEditText" />
 </RelativeLayout>
