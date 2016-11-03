@@ -11,27 +11,33 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class AddGroupActivity extends AppCompatActivity {
 
-    private EditText name;
-    private EditText emails;
+    private EditText name;  // Group name
+    private EditText emails; // Group members emails
 
-    private void createGroup(){
+    // Creates a group instance
+    public void createGroup() {
         Group newGroup = new Group(name.getText().toString(), FirebaseAuth.getInstance().getCurrentUser(), FirebaseDatabase.getInstance());
-        finish();
+        finish(); // Quit the activity
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_group);
+
+        // Get UI elements
         Button create = (Button) findViewById(R.id.addGroupButton);
+        name = (EditText) findViewById(R.id.issueNameEditText);
+        emails = (EditText) findViewById(R.id.groupUsersEditText);
+
+        // Set on-click listener to button
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 createGroup();
             }
         });
-        name = (EditText) findViewById(R.id.issueNameEditText);
-        emails = (EditText) findViewById(R.id.groupUsersEditText);
+
     }
 
     @Override

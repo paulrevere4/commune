@@ -9,11 +9,12 @@ import com.google.firebase.database.FirebaseDatabase;
  */
 
 public class Issue {
-    private String name;
-    private String description;
-    private FirebaseUser creator;
-    private DatabaseReference databaseRef;
-    private String issueId;
+
+    private String name;    // Issue name
+    private String description; // Issue description
+    private FirebaseUser creator; // Issue creator
+    private DatabaseReference databaseRef; // Database reference to the issue
+    private String issueId; // Unique issue ID created randomly by Firebase
 
     public Issue() {
 
@@ -24,12 +25,12 @@ public class Issue {
         this.description = description;
         this.creator = creator;
 
-        this.databaseRef = database.getReference().child("Issues").push();
-        this.issueId = databaseRef.getKey();
-        databaseRef.child("Name").setValue(name);
-        databaseRef.child("CreatorUid").setValue(creator.getUid());
-        databaseRef.child("Description").setValue(description);
-        databaseRef.child("Group").setValue(group);
+        this.databaseRef = database.getReference().child("Issues").push();  //Creator new issue
+        this.issueId = databaseRef.getKey();                                //Get the ID Firebase associated with the new issue
+        databaseRef.child("Name").setValue(name);                           //Set issue name
+        databaseRef.child("CreatorUid").setValue(creator.getUid());         //Set issue creator Uid
+        databaseRef.child("Description").setValue(description);             //Set issue description
+        databaseRef.child("Group").setValue(group);                         //Set issue group
     }
 
 }

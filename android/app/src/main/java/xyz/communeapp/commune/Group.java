@@ -9,9 +9,10 @@ import com.google.firebase.database.FirebaseDatabase;
  */
 
 public class Group {
-    private String name;
-    private FirebaseUser creator;
-    private DatabaseReference databaseRef;
+
+    private String name;    // Group name
+    private FirebaseUser creator; // Group creator
+    private DatabaseReference databaseRef; // Reference to the group in the database
 
     public Group() {
 
@@ -20,11 +21,13 @@ public class Group {
     public Group(String name, FirebaseUser creator, FirebaseDatabase database) {
         this.name = name;
         this.creator = creator;
-        this.databaseRef = database.getReference().child("Groups").push();
-        databaseRef.child("Name").setValue(name);
-        databaseRef.child("CreatorUid").setValue(creator.getUid());
-        databaseRef.child("Members").child(creator.getUid()).setValue(creator.getDisplayName());
 
-        database.getReference().child("Users").child(creator.getUid()).child("Groups").push().child("Name").setValue(name);
+        this.databaseRef = database.getReference().child("Groups").push(); // Create a new group in the databes
+
+        databaseRef.child("Name").setValue(name);   // Set the group name
+        databaseRef.child("CreatorUid").setValue(creator.getUid()); // Set the group creator Uid
+        databaseRef.child("Members").child(creator.getUid()).setValue(creator.getDisplayName()); // Set the creator as a member of the group
+
+        database.getReference().child("Users").child(creator.getUid()).child("Groups").push().child("Name").setValue(name); // Add the group under the creators groups
     }
 }

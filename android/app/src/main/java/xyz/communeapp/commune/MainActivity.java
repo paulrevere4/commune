@@ -60,11 +60,12 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
+    // Starts the create group activity
     private void startCreateGroupActivity() {
         Intent intent = new Intent(this, AddGroupActivity.class);
         startActivity(intent);
     }
-
+    // Starts the create issue actiity
     private void startCreateIssueActivity() {
         Intent intent = new Intent(this, CreateIssueActivity.class);
         startActivity(intent);
@@ -136,7 +137,8 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            logOut();
+            logOut();   //Logs the user out
+            // Go back to the login/register activity and kill this activity
             if (FirebaseAuth.getInstance().getCurrentUser() == null) {
                 Intent intent = new Intent(this, LoginRegisterActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -184,10 +186,13 @@ public class MainActivity extends AppCompatActivity {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             TextView textView = (TextView) rootView.findViewById(R.id.section_label);
             FloatingActionButton fab = (FloatingActionButton) rootView.findViewById(R.id.fab);
+            //If the section number is 3, hide the floating action button
             if((getArguments().getInt(ARG_SECTION_NUMBER)) == 3){
                 fab.setVisibility(View.INVISIBLE);
             }else{
+                //If the section number is 1 or 2, show the floating action button
                 fab.setVisibility(View.VISIBLE);
+                //If the section number is 1, set the floating action button to call create new issue function
                 if((getArguments().getInt(ARG_SECTION_NUMBER)) == 1){
                     fab.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -196,6 +201,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
                 }
+                //If the section number is 2, set the floating action button to call create new group function
                 if((getArguments().getInt(ARG_SECTION_NUMBER)) == 2){
                     fab.setOnClickListener(new View.OnClickListener() {
                         @Override
