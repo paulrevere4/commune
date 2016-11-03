@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -60,6 +59,12 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
+
+    private void startCreateGroupActivity() {
+        Intent intent = new Intent(this, AddGroupActivity.class);
+        startActivity(intent);
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -182,8 +187,7 @@ public class MainActivity extends AppCompatActivity {
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
+                    ((MainActivity)getActivity()).startCreateGroupActivity();
                 }
             });
             textView.setText("Hello "+ user.getDisplayName()+getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
