@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_create_issue"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="xyz.communeapp.commune.CreateIssueActivity">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_below="@+id/createIssueTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="52dp"
+        android:id="@+id/issueNameEditText"
+        android:textAlignment="textStart"
+        android:hint="Name" />
+
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:layout_marginTop="21dp"
+        android:id="@+id/issueDescriptionEditText"
+        android:hint="Details"
+        android:textAlignment="textStart"
+        android:layout_below="@+id/issueNameEditText"
+        android:layout_alignStart="@+id/issueGroupEditText" />
+
+    <Button
+        android:text="CREATE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/createIssueButton"
+        android:elevation="5dp"
+        android:textAlignment="center"
+        style="@style/FirebaseUI.Button"
+        android:textColor="@color/bodyTextColor"
+        android:layout_marginTop="110dp"
+        android:layout_below="@+id/issueGroupEditText"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_marginTop="20dp"
+        android:id="@+id/issueGroupEditText"
+        android:textAlignment="textStart"
+        android:hint="Group"
+        android:layout_below="@+id/issueDescriptionEditText"
+        android:layout_alignStart="@+id/issueNameEditText" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textStyle="normal|bold"
+        android:id="@+id/createIssueTitle"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="Create Issue" />
+
+</RelativeLayout>
