@@ -21,7 +21,7 @@ public class User {
         this.name = user.getDisplayName();
         this.uid = user.getUid();
 
-        this.databaseRef = database.getReference().child("Users").child(uid); //Create a new user uner Users with Uid as key
+        this.databaseRef = database.getReference().child("Users").child(uid); //Create a new user user Users with Uid as key
         databaseRef.child("Name").setValue(this.name);  //Set the new user's name as a child with key name
     }
 
