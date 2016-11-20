@@ -20,6 +20,13 @@
 		1CB5EA161DC574860086A286 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CB5EA141DC574860086A286 /* LaunchScreen.storyboard */; };
 		1CB5EA211DC574860086A286 /* CommuneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB5EA201DC574860086A286 /* CommuneTests.swift */; };
 		1CB5EA2C1DC574860086A286 /* CommuneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB5EA2B1DC574860086A286 /* CommuneUITests.swift */; };
+		1CE37A3B1DE0E8AE00FB39F4 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE37A3A1DE0E8AE00FB39F4 /* OptionsViewController.swift */; };
+		1CE37A3D1DE0EB2000FB39F4 /* logout.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CE37A3C1DE0EB2000FB39F4 /* logout.png */; };
+		1CE37A3F1DE13BCC00FB39F4 /* GroupInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE37A3E1DE13BCC00FB39F4 /* GroupInfoViewController.swift */; };
+		1CE37A411DE1418D00FB39F4 /* GroupMembersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE37A401DE1418D00FB39F4 /* GroupMembersTableViewController.swift */; };
+		1CE37A441DE1623700FB39F4 /* IssuesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE37A431DE1623700FB39F4 /* IssuesTableViewController.swift */; };
+		1CE37A461DE1672F00FB39F4 /* NewIssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE37A451DE1672F00FB39F4 /* NewIssueViewController.swift */; };
+		1CE37A481DE17DAC00FB39F4 /* Issue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE37A471DE17DAC00FB39F4 /* Issue.swift */; };
 		52910451BDE598179935FD51 /* Pods_CommuneUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C1A801ED14B741261939A1A /* Pods_CommuneUITests.framework */; };
 		70FFDCD56343B0C988BD7D05 /* Pods_CommuneTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77F1CBAA3F78D0FE3C1823A1 /* Pods_CommuneTests.framework */; };
 		8FB941D1193414AAB4938302 /* Pods_Commune.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 586673C36955ABB463E89922 /* Pods_Commune.framework */; };
@@ -64,6 +71,13 @@
 		1CB5EA271DC574860086A286 /* CommuneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CommuneUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CB5EA2B1DC574860086A286 /* CommuneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommuneUITests.swift; sourceTree = "<group>"; };
 		1CB5EA2D1DC574860086A286 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1CE37A3A1DE0E8AE00FB39F4 /* OptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
+		1CE37A3C1DE0EB2000FB39F4 /* logout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logout.png; sourceTree = "<group>"; };
+		1CE37A3E1DE13BCC00FB39F4 /* GroupInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GroupInfoViewController.swift; path = Assets.xcassets/GroupInfoViewController.swift; sourceTree = "<group>"; };
+		1CE37A401DE1418D00FB39F4 /* GroupMembersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupMembersTableViewController.swift; sourceTree = "<group>"; };
+		1CE37A431DE1623700FB39F4 /* IssuesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssuesTableViewController.swift; sourceTree = "<group>"; };
+		1CE37A451DE1672F00FB39F4 /* NewIssueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewIssueViewController.swift; sourceTree = "<group>"; };
+		1CE37A471DE17DAC00FB39F4 /* Issue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Issue.swift; sourceTree = "<group>"; };
 		27291DE000F969D63A65B40D /* Pods-Commune.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Commune.release.xcconfig"; path = "Pods/Target Support Files/Pods-Commune/Pods-Commune.release.xcconfig"; sourceTree = "<group>"; };
 		2D72ECDB71864EF314F21A7C /* Pods-CommuneUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CommuneUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CommuneUITests/Pods-CommuneUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		586673C36955ABB463E89922 /* Pods_Commune.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Commune.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,6 +127,7 @@
 		1C2418741DC58C540024CF4F /* images */ = {
 			isa = PBXGroup;
 			children = (
+				1CE37A3C1DE0EB2000FB39F4 /* logout.png */,
 				1C2418751DC58C670024CF4F /* communeLogo.png */,
 			);
 			name = images;
@@ -131,6 +146,8 @@
 			children = (
 				1C2418791DC597900024CF4F /* GroupsViewController.swift */,
 				1C0A1B981DC7FF2A004BA1B7 /* NewGroupViewController.swift */,
+				1CE37A3E1DE13BCC00FB39F4 /* GroupInfoViewController.swift */,
+				1CE37A401DE1418D00FB39F4 /* GroupMembersTableViewController.swift */,
 			);
 			name = "Groups View";
 			sourceTree = "<group>";
@@ -140,6 +157,7 @@
 			children = (
 				1C8B3DE91DC6A65600598715 /* User.swift */,
 				1C311D2D1DC6E9A7000D2C0B /* Group.swift */,
+				1CE37A471DE17DAC00FB39F4 /* Issue.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -173,7 +191,9 @@
 				1CB5EA0F1DC574860086A286 /* Main.storyboard */,
 				1C8B3DE81DC6A63C00598715 /* Models */,
 				1C24187B1DC597A40024CF4F /* Login View */,
+				1CE37A391DE0E88400FB39F4 /* Options View */,
 				1C24187C1DC597B60024CF4F /* Groups View */,
+				1CE37A421DE1622200FB39F4 /* Issues View */,
 				1CB5EA0B1DC574860086A286 /* AppDelegate.swift */,
 				1CB5EA121DC574860086A286 /* Assets.xcassets */,
 				1CB5EA141DC574860086A286 /* LaunchScreen.storyboard */,
@@ -200,6 +220,23 @@
 				1CB5EA2D1DC574860086A286 /* Info.plist */,
 			);
 			path = CommuneUITests;
+			sourceTree = "<group>";
+		};
+		1CE37A391DE0E88400FB39F4 /* Options View */ = {
+			isa = PBXGroup;
+			children = (
+				1CE37A3A1DE0E8AE00FB39F4 /* OptionsViewController.swift */,
+			);
+			name = "Options View";
+			sourceTree = "<group>";
+		};
+		1CE37A421DE1622200FB39F4 /* Issues View */ = {
+			isa = PBXGroup;
+			children = (
+				1CE37A431DE1623700FB39F4 /* IssuesTableViewController.swift */,
+				1CE37A451DE1672F00FB39F4 /* NewIssueViewController.swift */,
+			);
+			name = "Issues View";
 			sourceTree = "<group>";
 		};
 		8EF94476B52646E5E03642CD /* Frameworks */ = {
@@ -351,6 +388,7 @@
 				1CB5EA131DC574860086A286 /* Assets.xcassets in Resources */,
 				1C24187E1DC5A25C0024CF4F /* GoogleService-Info.plist in Resources */,
 				1CB5EA111DC574860086A286 /* Main.storyboard in Resources */,
+				1CE37A3D1DE0EB2000FB39F4 /* logout.png in Resources */,
 				1C2418761DC58C670024CF4F /* communeLogo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -514,12 +552,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1CE37A3F1DE13BCC00FB39F4 /* GroupInfoViewController.swift in Sources */,
 				1C8B3DEA1DC6A65600598715 /* User.swift in Sources */,
 				1C0A1B991DC7FF2A004BA1B7 /* NewGroupViewController.swift in Sources */,
 				1CB5EA0E1DC574860086A286 /* ViewController.swift in Sources */,
+				1CE37A411DE1418D00FB39F4 /* GroupMembersTableViewController.swift in Sources */,
+				1CE37A3B1DE0E8AE00FB39F4 /* OptionsViewController.swift in Sources */,
 				1CB5EA0C1DC574860086A286 /* AppDelegate.swift in Sources */,
+				1CE37A441DE1623700FB39F4 /* IssuesTableViewController.swift in Sources */,
 				1C311D2E1DC6E9A7000D2C0B /* Group.swift in Sources */,
 				1C24187A1DC597900024CF4F /* GroupsViewController.swift in Sources */,
+				1CE37A461DE1672F00FB39F4 /* NewIssueViewController.swift in Sources */,
+				1CE37A481DE17DAC00FB39F4 /* Issue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -675,6 +719,7 @@
 				CODE_SIGN_ENTITLEMENTS = Commune/Commune.entitlements;
 				DEVELOPMENT_TEAM = 252WYS99PD;
 				INFOPLIST_FILE = Commune/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mukul.Commune;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -690,6 +735,7 @@
 				CODE_SIGN_ENTITLEMENTS = Commune/Commune.entitlements;
 				DEVELOPMENT_TEAM = 252WYS99PD;
 				INFOPLIST_FILE = Commune/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mukul.Commune;
 				PRODUCT_NAME = "$(TARGET_NAME)";

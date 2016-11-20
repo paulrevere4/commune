@@ -21,7 +21,8 @@ class NewGroupViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-		
+		self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+
 		self.currentUser = FIRAuth.auth()?.currentUser
 		self.usersRef = FIRDatabase.database().reference(withPath: "Users")
         // Do any additional setup after loading the view.
@@ -42,6 +43,8 @@ class NewGroupViewController: UIViewController {
 		let newGroup = Group(name: self.groupNameTextField.text!, createdBy: self.currentUser!, members: membersToAddArray!)
 		// Add the created group info the the database
 		newGroup.addGroupToFirebase()
+		
+		navigationController?.popViewController(animated: true)
 		
 		
 	}

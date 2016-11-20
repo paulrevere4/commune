@@ -95,12 +95,10 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
 			FIRAuth.auth()!.createUser(withEmail: self.emailTextField.text!, password: self.passwordTextField.text!) { (user, error) in
 				// User successfully created
 				if error == nil {
-					
-					let userId: String = (user?.uid)!
 					let name: String = self.nameTextField.text!
 					let email: String = self.emailTextField.text!
 					
-					self.usersRef.child((user?.uid)!).setValue(["uid" : userId, "name": name, "email": email])
+					self.usersRef.child((user?.uid)!).setValue(["Name": name, "Email": email])
 					
 					// Log the user in
 					FIRAuth.auth()!.signIn(withEmail: self.emailTextField.text!, password: self.passwordTextField.text!) { (user, error) in
@@ -144,9 +142,8 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
 		FIRAuth.auth()?.signIn(with: credential) { (user, error) in
 			
 			if error == nil {
-				let userId: String = (user?.uid)!
 				// Store user info in database
-				self.usersRef.child((user?.uid)!).setValue(["uid" : userId, "name":user?.displayName , "email": user?.email])
+				self.usersRef.child((user?.uid)!).setValue(["Name":user?.displayName , "Email": user?.email])
 				// Display the Groups View once the user is logged in.
 				self.showGroupsView()
 			} else {
@@ -162,7 +159,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
 	// Transition to the groups view
 	func showGroupsView() {
 		let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-		let vc: UINavigationController = storyboard.instantiateViewController(withIdentifier: "GroupsViewController") as! UINavigationController
+		let vc: UINavigationController = storyboard.instantiateViewController(withIdentifier: "OptionsNavigationViewController") as! UINavigationController
 		self.present(vc, animated: true, completion: nil)
 	}
 }
