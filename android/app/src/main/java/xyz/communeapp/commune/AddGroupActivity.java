@@ -16,7 +16,7 @@ public class AddGroupActivity extends AppCompatActivity {
 
     // Creates a group instance
     public void createGroup() {
-        Group newGroup = new Group(name.getText().toString(), FirebaseAuth.getInstance().getCurrentUser(), FirebaseDatabase.getInstance());
+        Group newGroup = new Group(name.getText().toString(), emails.getText().toString(), FirebaseAuth.getInstance().getCurrentUser(), FirebaseDatabase.getInstance());
         finish(); // Quit the activity
     }
 
