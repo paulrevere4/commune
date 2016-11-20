@@ -20,7 +20,32 @@
         </activity>
         <activity android:name=".LoginRegisterActivity" />
         <activity android:name=".AddGroupActivity" />
-        <activity android:name=".CreateIssueActivity"></activity>
+        <activity android:name=".CreateIssueActivity" />
+        <activity
+            android:name=".GroupsListViewActivity"
+            android:label="@string/title_activity_groups_list_view"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="xyz.communeapp.commune.MainActivity" />
+        </activity>
+        <activity
+            android:name=".GroupActivity"
+            android:label="@string/title_activity_group">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="xyz.communeapp.commune.GroupsListViewActivity" />
+        </activity>
+        <activity
+            android:name=".MemberListActivity"
+            android:label="@string/title_activity_member_list"
+            android:parentActivityName=".GroupActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="xyz.communeapp.commune.GroupActivity" />
+        </activity>
     </application>
 
 </manifest>

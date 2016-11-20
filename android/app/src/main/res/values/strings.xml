@@ -5,4 +5,7 @@
     <string name="action_settings">Logout</string>
     <string name="section_format"> from section: %1$d</string>
     <string name="title_activity_main2">Commune</string>
+    <string name="title_activity_groups_list_view">My Groups</string>
+    <string name="title_activity_group">Group</string>
+    <string name="title_activity_member_list">Group Members</string>
 </resources>
