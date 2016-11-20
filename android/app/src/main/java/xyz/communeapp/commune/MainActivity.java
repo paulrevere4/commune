@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -68,8 +67,17 @@ public class MainActivity extends AppCompatActivity {
             mFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
             mFireDatabase = FirebaseDatabase.getInstance();
             mUser = new User(mFirebaseUser, mFireDatabase);
-            user_name.setText(mFirebaseUser.getDisplayName());
+            user_name.setText(mUser.getName());
             user_email.setText(mFirebaseUser.getEmail());
+            if(mFirebaseUser.getDisplayName() == null){
+                logOut();
+                Intent intent = new Intent(this, LoginRegisterActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
+                finish();
+            }
         }
     }
 
@@ -119,7 +127,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onResume() {
-        Log.e("OnResume", "Resumed!");
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
             finish();
         }

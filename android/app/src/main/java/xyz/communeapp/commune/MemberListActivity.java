@@ -9,7 +9,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -19,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class MemberListActivity extends AppCompatActivity implements AddUserDialog.NoticeDialogListener {
+public class MemberListActivity extends AppCompatActivity implements AddUserDialog.NoticeDialogListener, RemoveUserDialog.RemoveNoticeDialogListener {
 
     private ArrayList<String> members;
     private ArrayList<String> member_ids;
@@ -28,6 +30,12 @@ public class MemberListActivity extends AppCompatActivity implements AddUserDial
     private String mGroupName;
     private DatabaseReference mGroupRef;
     private AddUserDialog mAddUserDialog;
+    private RemoveUserDialog mRemoveUserDialog;
+    private String mSelectedMemberUID;
+    private String mGroupCreatorUID;
+    private String mCurrentUserUID;
+
+
 
     private void addUserToGroup(final String UID){
         // Get user reference using uid
@@ -46,9 +54,17 @@ public class MemberListActivity extends AppCompatActivity implements AddUserDial
         });
     }
 
+    @Override
+    public void onRemoveDialogPositiveClick(DialogFragment dialog){
+        Log.e("asdf","Removing user "+mSelectedMemberUID);
+        mGroupRef.child(mSelectedMemberUID).removeValue();
+        DatabaseReference user_ref = FirebaseDatabase.getInstance().getReference().child("Users").child(mSelectedMemberUID).child("Groups").child(mGroupID).getRef();
+        user_ref.removeValue();
+    }
+
     // The dialog fragment receives a reference to this Activity through the
     // Fragment.onAttach() callback, which it uses to call the following methods
-    // defined by the NoticeDialogFragment.NoticeDialogListener interface
+    // defined by the NoticeDialogFragment.RemoveNoticeDialogListener interface
     @Override
     public void onDialogPositiveClick(DialogFragment dialog, final String email) {
         // User touched the dialog's positive button
@@ -88,6 +104,22 @@ public class MemberListActivity extends AppCompatActivity implements AddUserDial
 
         mGroupID = getIntent().getStringExtra("GROUP_ID");
         mGroupName = getIntent().getStringExtra("GROUP_NAME");
+
+        mCurrentUserUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        DatabaseReference group_ref = FirebaseDatabase.getInstance().getReference().child("Groups").child(mGroupID).child("CreatorUid").getRef();
+        group_ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                mGroupCreatorUID = dataSnapshot.getValue().toString();
+                Log.e("asdfas","Creator is "+mGroupCreatorUID);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         mGroupRef = FirebaseDatabase.getInstance().getReference().child("Groups").child(mGroupID).child("Members").getRef();
 
@@ -138,12 +170,18 @@ public class MemberListActivity extends AppCompatActivity implements AddUserDial
         group_list.setAdapter(adapter);
 
         mAddUserDialog = new AddUserDialog();
+        mRemoveUserDialog = new RemoveUserDialog();
 
         group_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String member = String.valueOf(adapterView.getItemAtPosition(i));
-                String member_id = member_ids.get(i);
+                mSelectedMemberUID = member_ids.get(i);
+                if(mCurrentUserUID.equals(mGroupCreatorUID)){
+                    mRemoveUserDialog.show(getSupportFragmentManager(), "RemoveUserFromGroupDialogFragment");
+                }else{
+                    Toast.makeText(MemberListActivity.this, "You do not have permission to delete user!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

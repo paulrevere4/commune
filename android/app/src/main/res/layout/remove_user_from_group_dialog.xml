@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:text="Remove User From Group?"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/remove_user_from_group_textView"
+        android:fontFamily="sans-serif"
+        android:textSize="24sp"
+        android:textAlignment="center"
+        android:background="@color/authui_colorAccent"
+        android:textColor="@color/buttonTextColor" />
+
+</LinearLayout>
