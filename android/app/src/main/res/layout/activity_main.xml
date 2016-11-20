@@ -54,7 +54,7 @@
             android:paddingTop="8dp" />
 
         <Button
-            android:text="My Tasks"
+            android:text="My Issues"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/my_tasks"

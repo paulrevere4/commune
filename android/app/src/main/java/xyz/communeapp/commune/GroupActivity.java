@@ -36,7 +36,7 @@ public class GroupActivity extends AppCompatActivity {
         }
 
         Button members_button = (Button) findViewById(R.id.members_button);
-        Button tasks_button = (Button) findViewById(R.id.tasks_button);
+        Button issues_button = (Button) findViewById(R.id.issues_button);
         Button resources_button = (Button) findViewById(R.id.resources_button);
 
         members_button.setOnClickListener(new View.OnClickListener() {
@@ -49,10 +49,13 @@ public class GroupActivity extends AppCompatActivity {
             }
         });
 
-        tasks_button.setOnClickListener(new View.OnClickListener() {
+        issues_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(context, GroupIssuesActivity.class);
+                intent.putExtra("GROUP_ID", mGroupID);
+                intent.putExtra("GROUP_NAME", mGroupName);
+                startActivity(intent);
             }
         });
 
