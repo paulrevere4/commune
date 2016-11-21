@@ -23,6 +23,8 @@ import xyz.communeapp.commune.Activities.MyGroupsActivities.GroupActivities.Grou
 
 import xyz.communeapp.commune.Activities.MyGroupsActivities.GroupActivities.GroupMembers
         .MemberListActivity;
+import xyz.communeapp.commune.Activities.MyGroupsActivities.GroupActivities.GroupResources
+        .ResourceListView;
 import xyz.communeapp.commune.R;
 
 public class GroupActivity extends AppCompatActivity {
@@ -40,6 +42,11 @@ public class GroupActivity extends AppCompatActivity {
         FirebaseDatabase.getInstance().getReference().child("Users").child(mUserUID).child
                 ("Groups").child(mGroupID).removeValue();
         finish();
+    }
+
+    private void deleteGroup(){
+        FirebaseDatabase.getInstance().getReference().child("Users").child(mUserUID).child("Groups").child(mGroupID).removeValue();
+        mGroupRef.removeValue();
     }
 
     @Override
@@ -85,6 +92,7 @@ public class GroupActivity extends AppCompatActivity {
         Button issues_button = (Button) findViewById(R.id.issues_button);
         Button resources_button = (Button) findViewById(R.id.resources_button);
         Button leave_group_button = (Button) findViewById(R.id.leave_group_button);
+        Button delete_group_button = (Button) findViewById(R.id.delete_group_button);
 
         members_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,7 +117,10 @@ public class GroupActivity extends AppCompatActivity {
         resources_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(context, ResourceListView.class);
+                intent.putExtra("GROUP_ID", mGroupID);
+                intent.putExtra("GROUP_NAME", mGroupName);
+                startActivity(intent);
             }
         });
 
@@ -132,6 +143,27 @@ public class GroupActivity extends AppCompatActivity {
                         public void onClick(DialogInterface dialog, int which) {
                         }
                     }).setIcon(android.R.drawable.ic_dialog_alert).show();
+                }
+            }
+        });
+
+        delete_group_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mUserUID.equals(mGroupCreatorUID)) {
+                    new AlertDialog.Builder(context).setTitle("Delete Group").setMessage("Are you " +
+                            "" + "sure you want to delete this group?").setPositiveButton("Yes",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    deleteGroup();
+                                }
+                            }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                        }
+                    }).setIcon(android.R.drawable.ic_dialog_alert).show();
+                } else {
+                    new AlertDialog.Builder(context).setTitle("Delete Group").setMessage("You do not have permission to delete group").setIcon(android.R.drawable
+                            .ic_dialog_alert).show();
                 }
             }
         });

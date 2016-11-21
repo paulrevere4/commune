@@ -84,14 +84,27 @@ public class IssueActivity extends AppCompatActivity implements MarkIssueComplet
 
     }
 
-    public void onDialogPositiveClick(DialogFragment dialog, String value) {
+    private void deleteIssue(){
         mUserUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        addMonetaryValue(value);
-        mIssueRef.child("Completed").setValue("True");
-        if (mIssueAssignedTo != null) {
+        if (!mIssueAssignedTo.equals("NA")) {
             FirebaseDatabase.getInstance().getReference().child("Users").child(mUserUID).child
-                    ("Issues").child(mIssueID).child("Completed").setValue("True");
+                    ("Issues").child(mIssueID).removeValue();
         }
+        mIssueRef.removeValue();
+        recreate();
+    }
+
+    public void onDialogPositiveClick(DialogFragment dialog, String value) {
+        if(value.isEmpty()){
+            addMonetaryValue("0");
+        }else{
+            addMonetaryValue(value);
+        }
+        deleteIssue();
+    }
+
+    public void onDialogNegativeClick(DialogFragment dialog){
+        deleteIssue();
     }
 
     @Override

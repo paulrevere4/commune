@@ -11,4 +11,5 @@
     <string name="title_activity_create_issue">Create Issue</string>
     <string name="title_activity_my_issue_list_view">My Issues</string>
     <string name="title_activity_issue">Issue</string>
+    <string name="title_activity_resource_list_view">Group Resources</string>
 </resources>

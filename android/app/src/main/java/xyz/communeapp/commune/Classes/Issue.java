@@ -11,11 +11,11 @@ public class Issue {
     private String mAssignedToName; // Name of person the issue is assigned to
     private String mAssignedToUID; // UID of the person the issue is assigned to
     private String mGroupID;// Unique ID of the group the issue belongs to
-    private boolean mStatus; // Status of the issue
+    private String mStatus; // Status of the issue
     private DatabaseReference mIssueDatabaseRef; // Issue database reference
 
     public Issue() {
-        this.mStatus = false;
+        this.mStatus = "False";
     }
 
     public String getIssueID() {
@@ -82,11 +82,11 @@ public class Issue {
         this.mGroupID = groupID;
     }
 
-    public boolean getStatus() {
+    public String getStatus() {
         return this.mStatus;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(String status) {
         this.mStatus = status;
     }
 }

@@ -145,7 +145,6 @@ public class MemberListActivity extends AppCompatActivity implements AddUserDial
         ChildEventListener childEventListener = new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
-                Log.e("adsadf", "onChildAdded:" + dataSnapshot.getValue());
                 members.add(dataSnapshot.getValue().toString());
                 member_ids.add(dataSnapshot.getKey());
                 adapter.notifyDataSetChanged();
@@ -154,12 +153,10 @@ public class MemberListActivity extends AppCompatActivity implements AddUserDial
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String previousChildName) {
-                Log.e("adf", "onChildChanged:" + dataSnapshot.getKey());
             }
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-                Log.e("adf", "onChildRemoved:" + dataSnapshot.getKey());
                 int i = members.indexOf(dataSnapshot.getValue().toString());
                 int j = member_ids.indexOf(dataSnapshot.getKey());
                 members.remove(i);
@@ -169,7 +166,6 @@ public class MemberListActivity extends AppCompatActivity implements AddUserDial
 
             @Override
             public void onChildMoved(DataSnapshot dataSnapshot, String previousChildName) {
-                Log.e("adf", "onChildMoved:" + dataSnapshot.getKey());
             }
 
             @Override

@@ -40,17 +40,6 @@
         android:textColor="@color/buttonTextColor" />
 
     <Button
-        android:id="@+id/members_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/group_id_textView"
-        android:layout_marginTop="158dp"
-        android:background="@color/authui_colorPrimaryDark"
-        android:text="Members"
-        android:textColor="@color/buttonTextColor" />
-
-    <Button
         android:id="@+id/resources_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -62,17 +51,40 @@
         android:textColor="@color/buttonTextColor" />
 
     <Button
+        android:text="Delete Group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:id="@+id/delete_group_button"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/leave_group_button"
+        android:background="@android:color/holo_red_dark"
+        android:layout_alignEnd="@+id/leave_group_button"
+        android:textColor="@color/buttonTextColor" />
+
+    <Button
+        android:id="@+id/members_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="90dp"
+        android:background="@color/authui_colorPrimaryDark"
+        android:text="Members"
+        android:textColor="@color/buttonTextColor"
+        android:layout_below="@+id/group_id_textView"
+        android:layout_alignParentStart="true" />
+
+    <Button
         android:id="@+id/leave_group_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="6dp"
         android:background="@android:color/holo_red_dark"
         android:elevation="3dp"
         android:padding="8dp"
         android:text="Leave Group"
-        android:textColor="@color/buttonTextColor" />
+        android:textColor="@color/buttonTextColor"
+        android:layout_above="@+id/delete_group_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="33dp" />
 
 
 </RelativeLayout>

@@ -8,13 +8,17 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.EditText;
 
 import xyz.communeapp.commune.R;
 
-public class MarkIssueCompleteDialog extends DialogFragment {
+/**
+ * Created by Rabi on 11/21/16.
+ */
+
+public class RemoveResourceDialog extends DialogFragment {
+
     // Use this instance of the interface to deliver action events
-    NoticeDialogListener mListener;
+    RemoveResourceDialog.RemoveNoticeDialogListener mListener;
 
     /* The activity that creates an instance of this dialog fragment must
     * implement this interface in order to receive event callbacks.
@@ -27,7 +31,7 @@ public class MarkIssueCompleteDialog extends DialogFragment {
         // Verify that the host activity implements the callback interface
         try {
             // Instantiate the RemoveNoticeDialogListener so we can send events to the host
-            mListener = (MarkIssueCompleteDialog.NoticeDialogListener) activity;
+            mListener = (RemoveResourceDialog.RemoveNoticeDialogListener) activity;
         } catch (ClassCastException e) {
             // The activity doesn't implement the interface, throw exception
             throw new ClassCastException(activity.toString() + " must implement " +
@@ -42,24 +46,20 @@ public class MarkIssueCompleteDialog extends DialogFragment {
 
         // Get the layout inflater
         final LayoutInflater inflater = getActivity().getLayoutInflater();
-        final View view = inflater.inflate(R.layout.mark_issue_complete_dialog, null);
-
-        final EditText dollarValue = (EditText) view.findViewById(R.id.dollar_value);
+        final View view = inflater.inflate(R.layout.remove_resource_dialog, null);
 
         // Inflate and set the layout for the dialog
         // Pass null as the parent view because its going in the dialog layout
         builder.setView(view)
                 // Add action buttons
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Remove", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        mListener.onDialogPositiveClick(MarkIssueCompleteDialog.this, dollarValue
-                                .getText().toString());
+                        mListener.onRemoveDialogPositiveClick(RemoveResourceDialog.this);
                     }
-                }).setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                mListener.onDialogNegativeClick(MarkIssueCompleteDialog.this);
-                MarkIssueCompleteDialog.this.getDialog().cancel();
+                RemoveResourceDialog.this.getDialog().cancel();
             }
         });
 
@@ -67,8 +67,7 @@ public class MarkIssueCompleteDialog extends DialogFragment {
         return builder.create();
     }
 
-    public interface NoticeDialogListener {
-        void onDialogPositiveClick(DialogFragment dialog, String value);
-        void onDialogNegativeClick(DialogFragment dialog);
+    public interface RemoveNoticeDialogListener {
+        void onRemoveDialogPositiveClick(DialogFragment dialog);
     }
 }
