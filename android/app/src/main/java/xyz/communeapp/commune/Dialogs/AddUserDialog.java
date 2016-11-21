@@ -1,4 +1,4 @@
-package xyz.communeapp.commune;
+package xyz.communeapp.commune.Dialogs;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -10,9 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 
-/**
- * Created by Rabi on 11/19/16.
- */
+import xyz.communeapp.commune.R;
 
 public class AddUserDialog extends DialogFragment {
 
@@ -22,10 +20,6 @@ public class AddUserDialog extends DialogFragment {
     /* The activity that creates an instance of this dialog fragment must
     * implement this interface in order to receive event callbacks.
     * Each method passes the DialogFragment in case the host needs to query it. */
-
-    public interface NoticeDialogListener {
-        public void onDialogPositiveClick(DialogFragment dialog, String email);
-    }
 
     // Override the Fragment.onAttach() method to instantiate the RemoveNoticeDialogListener
     @Override
@@ -37,8 +31,8 @@ public class AddUserDialog extends DialogFragment {
             mListener = (NoticeDialogListener) activity;
         } catch (ClassCastException e) {
             // The activity doesn't implement the interface, throw exception
-            throw new ClassCastException(activity.toString()
-                    + " must implement RemoveNoticeDialogListener");
+            throw new ClassCastException(activity.toString() + " must implement " +
+                    "RemoveNoticeDialogListener");
         }
     }
 
@@ -60,16 +54,20 @@ public class AddUserDialog extends DialogFragment {
                 .setPositiveButton("Add", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        mListener.onDialogPositiveClick(AddUserDialog.this, email.getText().toString());
+                        mListener.onDialogPositiveClick(AddUserDialog.this, email.getText()
+                                .toString());
                     }
-                })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        AddUserDialog.this.getDialog().cancel();
-                    }
-                });
+                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                AddUserDialog.this.getDialog().cancel();
+            }
+        });
 
         // Create the AlertDialog object and return it
         return builder.create();
+    }
+
+    public interface NoticeDialogListener {
+        void onDialogPositiveClick(DialogFragment dialog, String email);
     }
 }

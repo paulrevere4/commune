@@ -1,4 +1,4 @@
-package xyz.communeapp.commune;
+package xyz.communeapp.commune.Dialogs;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -10,9 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 
-/**
- * Created by Rabi on 11/20/16.
- */
+import xyz.communeapp.commune.R;
 
 public class MarkIssueCompleteDialog extends DialogFragment {
     // Use this instance of the interface to deliver action events
@@ -21,10 +19,6 @@ public class MarkIssueCompleteDialog extends DialogFragment {
     /* The activity that creates an instance of this dialog fragment must
     * implement this interface in order to receive event callbacks.
     * Each method passes the DialogFragment in case the host needs to query it. */
-
-    public interface NoticeDialogListener {
-        public void onDialogPositiveClick(DialogFragment dialog, String value);
-    }
 
     // Override the Fragment.onAttach() method to instantiate the RemoveNoticeDialogListener
     @Override
@@ -36,8 +30,8 @@ public class MarkIssueCompleteDialog extends DialogFragment {
             mListener = (MarkIssueCompleteDialog.NoticeDialogListener) activity;
         } catch (ClassCastException e) {
             // The activity doesn't implement the interface, throw exception
-            throw new ClassCastException(activity.toString()
-                    + " must implement RemoveNoticeDialogListener");
+            throw new ClassCastException(activity.toString() + " must implement " +
+                    "RemoveNoticeDialogListener");
         }
     }
 
@@ -59,16 +53,20 @@ public class MarkIssueCompleteDialog extends DialogFragment {
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        mListener.onDialogPositiveClick(MarkIssueCompleteDialog.this, dollarValue.getText().toString());
+                        mListener.onDialogPositiveClick(MarkIssueCompleteDialog.this, dollarValue
+                                .getText().toString());
                     }
-                })
-                .setNegativeButton("NO", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        MarkIssueCompleteDialog.this.getDialog().cancel();
-                    }
-                });
+                }).setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                MarkIssueCompleteDialog.this.getDialog().cancel();
+            }
+        });
 
         // Create the AlertDialog object and return it
         return builder.create();
+    }
+
+    public interface NoticeDialogListener {
+        void onDialogPositiveClick(DialogFragment dialog, String value);
     }
 }

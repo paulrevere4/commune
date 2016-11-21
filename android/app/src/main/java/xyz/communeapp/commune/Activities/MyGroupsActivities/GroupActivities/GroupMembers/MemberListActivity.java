@@ -1,4 +1,4 @@
-package xyz.communeapp.commune;
+package xyz.communeapp.commune.Activities.MyGroupsActivities.GroupActivities.GroupMembers;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -21,7 +21,13 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class MemberListActivity extends AppCompatActivity implements AddUserDialog.NoticeDialogListener, RemoveUserDialog.RemoveNoticeDialogListener {
+import xyz.communeapp.commune.Dialogs.AddUserDialog;
+import xyz.communeapp.commune.Dialogs.RemoveUserDialog;
+import xyz.communeapp.commune.ListAdapters.GroupListCustomAdapter;
+import xyz.communeapp.commune.R;
+
+public class MemberListActivity extends AppCompatActivity implements AddUserDialog
+        .NoticeDialogListener, RemoveUserDialog.RemoveNoticeDialogListener {
 
     private ArrayList<String> members;
     private ArrayList<String> member_ids;
@@ -36,10 +42,10 @@ public class MemberListActivity extends AppCompatActivity implements AddUserDial
     private String mCurrentUserUID;
 
 
-
-    private void addUserToGroup(final String UID){
+    private void addUserToGroup(final String UID) {
         // Get user reference using uid
-        DatabaseReference user_ref = FirebaseDatabase.getInstance().getReference().child("Users").child(UID).child("Name").getRef();
+        DatabaseReference user_ref = FirebaseDatabase.getInstance().getReference().child("Users")
+                .child(UID).child("Name").getRef();
 
         user_ref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -53,14 +59,16 @@ public class MemberListActivity extends AppCompatActivity implements AddUserDial
             }
         });
         float value = 0;
-        FirebaseDatabase.getInstance().getReference().child("Groups").child(mGroupID).child("MonetaryContributions").child(UID).setValue(value);
+        FirebaseDatabase.getInstance().getReference().child("Groups").child(mGroupID).child
+                ("MonetaryContributions").child(UID).setValue(value);
     }
 
     @Override
-    public void onRemoveDialogPositiveClick(DialogFragment dialog){
-        Log.e("asdf","Removing user "+mSelectedMemberUID);
+    public void onRemoveDialogPositiveClick(DialogFragment dialog) {
+        Log.e("asdf", "Removing user " + mSelectedMemberUID);
         mGroupRef.child(mSelectedMemberUID).removeValue();
-        DatabaseReference user_ref = FirebaseDatabase.getInstance().getReference().child("Users").child(mSelectedMemberUID).child("Groups").child(mGroupID).getRef();
+        DatabaseReference user_ref = FirebaseDatabase.getInstance().getReference().child("Users")
+                .child(mSelectedMemberUID).child("Groups").child(mGroupID).getRef();
         user_ref.removeValue();
     }
 
@@ -70,9 +78,10 @@ public class MemberListActivity extends AppCompatActivity implements AddUserDial
     @Override
     public void onDialogPositiveClick(DialogFragment dialog, final String email) {
         // User touched the dialog's positive button
-        Log.e("asdf","add clicked "+ email);
+        Log.e("asdf", "add clicked " + email);
 
-        FirebaseDatabase.getInstance().getReference().child("Users").orderByChild("Email").equalTo(email).limitToFirst(1).addListenerForSingleValueEvent(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference().child("Users").orderByChild("Email")
+                .equalTo(email).limitToFirst(1).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.hasChildren()) {
@@ -87,14 +96,14 @@ public class MemberListActivity extends AppCompatActivity implements AddUserDial
 
                     addUserToGroup(UID);
 
-                }else{
-                    Log.e("test",email+" does not exist");
+                } else {
+                    Log.e("test", email + " does not exist");
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Log.e("test",databaseError.getDetails());
+                Log.e("test", databaseError.getDetails());
             }
         });
     }
@@ -109,12 +118,13 @@ public class MemberListActivity extends AppCompatActivity implements AddUserDial
 
         mCurrentUserUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        DatabaseReference group_ref = FirebaseDatabase.getInstance().getReference().child("Groups").child(mGroupID).child("CreatorUid").getRef();
+        DatabaseReference group_ref = FirebaseDatabase.getInstance().getReference().child
+                ("Groups").child(mGroupID).child("CreatorUid").getRef();
         group_ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 mGroupCreatorUID = dataSnapshot.getValue().toString();
-                Log.e("asdfas","Creator is "+mGroupCreatorUID);
+                Log.e("asdfas", "Creator is " + mGroupCreatorUID);
             }
 
             @Override
@@ -123,13 +133,14 @@ public class MemberListActivity extends AppCompatActivity implements AddUserDial
             }
         });
 
-        mGroupRef = FirebaseDatabase.getInstance().getReference().child("Groups").child(mGroupID).child("Members").getRef();
+        mGroupRef = FirebaseDatabase.getInstance().getReference().child("Groups").child(mGroupID)
+                .child("Members").getRef();
 
         members = new ArrayList<>();
 
         member_ids = new ArrayList<>();
 
-        adapter =  new GroupListCustomAdapter(this, members);
+        adapter = new GroupListCustomAdapter(this, members);
 
         ChildEventListener childEventListener = new ChildEventListener() {
             @Override
@@ -179,10 +190,12 @@ public class MemberListActivity extends AppCompatActivity implements AddUserDial
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String member = String.valueOf(adapterView.getItemAtPosition(i));
                 mSelectedMemberUID = member_ids.get(i);
-                if(mCurrentUserUID.equals(mGroupCreatorUID)){
-                    mRemoveUserDialog.show(getSupportFragmentManager(), "RemoveUserFromGroupDialogFragment");
-                }else{
-                    Toast.makeText(MemberListActivity.this, "You do not have permission to delete user!", Toast.LENGTH_SHORT).show();
+                if (mCurrentUserUID.equals(mGroupCreatorUID)) {
+                    mRemoveUserDialog.show(getSupportFragmentManager(),
+                            "RemoveUserFromGroupDialogFragment");
+                } else {
+                    Toast.makeText(MemberListActivity.this, "You do not have permission to " +
+                            "delete" + " user!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -203,6 +216,6 @@ public class MemberListActivity extends AppCompatActivity implements AddUserDial
                 onBackPressed();
                 return true;
         }
-        return(super.onOptionsItemSelected(item));
+        return (super.onOptionsItemSelected(item));
     }
 }

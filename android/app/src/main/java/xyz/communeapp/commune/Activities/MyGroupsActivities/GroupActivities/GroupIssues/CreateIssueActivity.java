@@ -1,4 +1,4 @@
-package xyz.communeapp.commune;
+package xyz.communeapp.commune.Activities.MyGroupsActivities.GroupActivities.GroupIssues;
 
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
@@ -24,6 +24,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
+import xyz.communeapp.commune.Classes.AddIssueToDatabase;
+import xyz.communeapp.commune.Classes.Issue;
+import xyz.communeapp.commune.R;
+
 public class CreateIssueActivity extends AppCompatActivity {
 
     private String mGroupID;
@@ -39,34 +43,30 @@ public class CreateIssueActivity extends AppCompatActivity {
     private ArrayList<String> mGroupMemberNames;
     private ArrayList<String> mGroupMemberUIDs;
 
-    private void writeIssueToDatabase(Issue issue){
+    private void writeIssueToDatabase(Issue issue) {
         AddIssueToDatabase addToDatabase = new AddIssueToDatabase(issue, mGroupIssuesRef);
         addToDatabase.add();
-        if(!mMemberSelectEditText.getText().toString().isEmpty()){
+        if (!mMemberSelectEditText.getText().toString().isEmpty()) {
             addToDatabase.addIssueToUser();
         }
         finish();
     }
 
-    private void createIssue(){
+    private void createIssue() {
         Issue issue = new Issue();
         issue.setName(mNameEditText.getText().toString());
         issue.setGroupID(mGroupID);
 
-        if(mDueDateEditText.getText().toString().isEmpty())
-            issue.setDueDate("NA");
-        else
-            issue.setDueDate(mDueDateEditText.getText().toString());
+        if (mDueDateEditText.getText().toString().isEmpty()) issue.setDueDate("NA");
+        else issue.setDueDate(mDueDateEditText.getText().toString());
 
-        if(mIssueDescription.getText().toString().isEmpty())
-            issue.setDescription("NA");
-        else
-            issue.setDescription(mIssueDescription.getText().toString());
+        if (mIssueDescription.getText().toString().isEmpty()) issue.setDescription("NA");
+        else issue.setDescription(mIssueDescription.getText().toString());
 
-        if(mMemberSelectEditText.getText().toString().isEmpty()){
+        if (mMemberSelectEditText.getText().toString().isEmpty()) {
             issue.setAssignedToName("NA");
             issue.setAssignedToUID("NA");
-        }else{
+        } else {
             issue.setAssignedToName(mMemberSelectEditText.getText().toString());
             issue.setAssignedToUID(mAssignedToUID);
         }
@@ -86,8 +86,10 @@ public class CreateIssueActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_issue);
 
         mGroupID = getIntent().getStringExtra("GROUP_ID");
-        mGroupIssuesRef = FirebaseDatabase.getInstance().getReference().child("Groups").child(mGroupID).child("Issues").getRef();
-        mGroupMembersRef = FirebaseDatabase.getInstance().getReference().child("Groups").child(mGroupID).child("Members");
+        mGroupIssuesRef = FirebaseDatabase.getInstance().getReference().child("Groups").child
+                (mGroupID).child("Issues").getRef();
+        mGroupMembersRef = FirebaseDatabase.getInstance().getReference().child("Groups").child
+                (mGroupID).child("Members");
         mNameEditText = (EditText) findViewById(R.id.issue_name_editText);
         mDueDateEditText = (EditText) findViewById(R.id.due_date_editText);
         mMemberSelectEditText = (EditText) findViewById(R.id.select_user_editText);
@@ -97,9 +99,10 @@ public class CreateIssueActivity extends AppCompatActivity {
         mCreateIssueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(mNameEditText.getText().toString().isEmpty()){
-                    Toast.makeText(CreateIssueActivity.this, "Name is required for issue", Toast.LENGTH_SHORT).show();
-                }else {
+                if (mNameEditText.getText().toString().isEmpty()) {
+                    Toast.makeText(CreateIssueActivity.this, "Name is required for issue", Toast
+                            .LENGTH_SHORT).show();
+                } else {
                     createIssue();
                 }
             }
@@ -110,8 +113,7 @@ public class CreateIssueActivity extends AppCompatActivity {
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
 
             @Override
-            public void onDateSet(DatePicker view, int year, int monthOfYear,
-                                  int dayOfMonth) {
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                 myCalendar.set(Calendar.YEAR, year);
                 myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
@@ -122,15 +124,16 @@ public class CreateIssueActivity extends AppCompatActivity {
         mDueDateEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DatePickerDialog(CreateIssueActivity.this, date, myCalendar
-                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                new DatePickerDialog(CreateIssueActivity.this, date, myCalendar.get(Calendar
+                        .YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar
+                        .DAY_OF_MONTH)).show();
             }
         });
 
         mGroupMemberNames = new ArrayList<>();
         mGroupMemberUIDs = new ArrayList<>();
-        mMembersAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, mGroupMemberNames);
+        mMembersAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
+                mGroupMemberNames);
 
         ChildEventListener childEventListener = new ChildEventListener() {
             @Override
@@ -170,16 +173,14 @@ public class CreateIssueActivity extends AppCompatActivity {
         mMemberSelectEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new AlertDialog.Builder(CreateIssueActivity.this)
-                        .setAdapter(mMembersAdapter, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                mMemberSelectEditText.setText(mGroupMemberNames.get(which));
-                                mAssignedToUID = mGroupMemberUIDs.get(which);
-                            }
-                        })
-                        .setTitle("Select Member")
-                        .show();
+                new AlertDialog.Builder(CreateIssueActivity.this).setAdapter(mMembersAdapter, new
+                        DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mMemberSelectEditText.setText(mGroupMemberNames.get(which));
+                        mAssignedToUID = mGroupMemberUIDs.get(which);
+                    }
+                }).setTitle("Select Member").show();
             }
         });
     }
@@ -191,6 +192,6 @@ public class CreateIssueActivity extends AppCompatActivity {
                 onBackPressed();
                 return true;
         }
-        return(super.onOptionsItemSelected(item));
+        return (super.onOptionsItemSelected(item));
     }
 }

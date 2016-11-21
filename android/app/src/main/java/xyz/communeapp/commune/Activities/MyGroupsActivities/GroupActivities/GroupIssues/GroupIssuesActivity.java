@@ -1,4 +1,4 @@
-package xyz.communeapp.commune;
+package xyz.communeapp.commune.Activities.MyGroupsActivities.GroupActivities.GroupIssues;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +18,10 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
+import xyz.communeapp.commune.Activities.IssueActivity.IssueActivity;
+import xyz.communeapp.commune.ListAdapters.GroupListCustomAdapter;
+import xyz.communeapp.commune.R;
+
 public class GroupIssuesActivity extends AppCompatActivity {
 
     private ArrayList<String> issues;
@@ -34,11 +38,12 @@ public class GroupIssuesActivity extends AppCompatActivity {
 
         mGroupID = getIntent().getStringExtra("GROUP_ID");
 
-        mGroupRef = FirebaseDatabase.getInstance().getReference().child("Groups").child(mGroupID).child("Issues").getRef();
+        mGroupRef = FirebaseDatabase.getInstance().getReference().child("Groups").child(mGroupID)
+                .child("Issues").getRef();
         issues = new ArrayList<>();
         issue_ids = new ArrayList<>();
 
-        adapter =  new GroupListCustomAdapter(this, issues);
+        adapter = new GroupListCustomAdapter(this, issues);
 
         ChildEventListener childEventListener = new ChildEventListener() {
             @Override
@@ -84,8 +89,8 @@ public class GroupIssuesActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(GroupIssuesActivity.this, IssueActivity.class);
-                intent.putExtra("ISSUE_ID",issue_ids.get(i));
-                intent.putExtra("GROUP_ID",mGroupID);
+                intent.putExtra("ISSUE_ID", issue_ids.get(i));
+                intent.putExtra("GROUP_ID", mGroupID);
                 startActivity(intent);
             }
         });
@@ -95,7 +100,7 @@ public class GroupIssuesActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(GroupIssuesActivity.this, CreateIssueActivity.class);
-                intent.putExtra("GROUP_ID",mGroupID);
+                intent.putExtra("GROUP_ID", mGroupID);
                 startActivity(intent);
             }
         });
@@ -108,6 +113,6 @@ public class GroupIssuesActivity extends AppCompatActivity {
                 onBackPressed();
                 return true;
         }
-        return(super.onOptionsItemSelected(item));
+        return (super.onOptionsItemSelected(item));
     }
 }

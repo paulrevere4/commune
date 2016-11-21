@@ -3,7 +3,6 @@
     <string name="facebook_application_id" translatable="false">1688429518152264</string>
 
     <string name="action_settings">Logout</string>
-    <string name="section_format"> from section: %1$d</string>
     <string name="title_activity_main2">Commune</string>
     <string name="title_activity_groups_list_view">My Groups</string>
     <string name="title_activity_group">Group</string>

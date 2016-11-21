@@ -1,4 +1,4 @@
-package xyz.communeapp.commune;
+package xyz.communeapp.commune.ListAdapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,18 +9,16 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-/**
- * Created by Rabi on 11/18/16.
- */
+import xyz.communeapp.commune.R;
 
-class GroupListCustomAdapter extends ArrayAdapter<String> {
+public class GroupListCustomAdapter extends ArrayAdapter<String> {
 
-    GroupListCustomAdapter(Context context, ArrayList<String> groups){
+    public GroupListCustomAdapter(Context context, ArrayList<String> groups) {
         super(context, R.layout.group_list_row, groups);
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent){
+    public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View customView = inflater.inflate(R.layout.group_list_row, parent, false);
 

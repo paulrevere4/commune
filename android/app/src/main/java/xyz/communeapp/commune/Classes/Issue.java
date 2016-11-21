@@ -1,10 +1,6 @@
-package xyz.communeapp.commune;
+package xyz.communeapp.commune.Classes;
 
 import com.google.firebase.database.DatabaseReference;
-
-/**
- * Created by Rabi on 11/3/16.
- */
 
 public class Issue {
 
@@ -18,77 +14,79 @@ public class Issue {
     private boolean mStatus; // Status of the issue
     private DatabaseReference mIssueDatabaseRef; // Issue database reference
 
-    Issue() {
+    public Issue() {
         this.mStatus = false;
     }
 
-    public void setIssueID(String ID){
-        this.mIssueID = ID;
-    }
-
-    public String getIssueID(){
+    public String getIssueID() {
         return this.mIssueID;
     }
 
-    public void setName(String name){
-        this.mName = name;
+    public void setIssueID(String ID) {
+        this.mIssueID = ID;
     }
 
-    public String getName(){
+    public String getName() {
         return this.mName;
     }
 
-    public void setDueDate(String dueDate){
-        this.mDueDate = dueDate;
+    public void setName(String name) {
+        this.mName = name;
     }
 
-    public String getDueDate(){
+    public String getDueDate() {
         return this.mDueDate;
     }
 
-    public void setIssueRef(DatabaseReference ref){
-        this.mIssueDatabaseRef = ref;
+    public void setDueDate(String dueDate) {
+        this.mDueDate = dueDate;
     }
 
-    public DatabaseReference getIssueRef(){
+    public DatabaseReference getIssueRef() {
         return this.mIssueDatabaseRef;
     }
 
-    public void setDescription(String description){
-        this.mDescription = description;
+    public void setIssueRef(DatabaseReference ref) {
+        this.mIssueDatabaseRef = ref;
     }
 
-    public String getDescription(){
+    public String getDescription() {
         return this.mDescription;
     }
 
-    public void setAssignedToName(String name){
+    public void setDescription(String description) {
+        this.mDescription = description;
+    }
+
+    public void setAssignedToName(String name) {
         this.mAssignedToName = name;
     }
-    public String getAssigedToName(){
+
+    public String getAssigedToName() {
         return this.mAssignedToName;
     }
 
-    public void setAssignedToUID(String UID){
+    public void setAssignedToUID(String UID) {
         this.mAssignedToUID = UID;
     }
-    public String getAssigedToUID(){
+
+    public String getAssigedToUID() {
         return this.mAssignedToUID;
     }
 
-    public void setGroupID(String groupID){
-        this.mGroupID = groupID;
-    }
-
-    public String getGroupID(){
+    public String getGroupID() {
         return this.mGroupID;
     }
 
-    public void setStatus(boolean status){
-        this.mStatus = status;
+    public void setGroupID(String groupID) {
+        this.mGroupID = groupID;
     }
 
-    public boolean getStatus(){
+    public boolean getStatus() {
         return this.mStatus;
+    }
+
+    public void setStatus(boolean status) {
+        this.mStatus = status;
     }
 }

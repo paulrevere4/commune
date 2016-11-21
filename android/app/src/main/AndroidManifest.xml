@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.MainActivity"
             android:label="@string/title_activity_main2"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -18,62 +18,62 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginRegisterActivity" />
-        <activity android:name=".AddGroupActivity" />
+        <activity android:name=".Activities.LoginRegisterActivity" />
+        <activity android:name=".Activities.MyGroupsActivities.AddGroupActivity" />
         <activity
-            android:name=".GroupsListViewActivity"
+            android:name=".Activities.MyGroupsActivities.GroupsListViewActivity"
             android:label="@string/title_activity_groups_list_view"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".Activities.MainActivity"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="xyz.communeapp.commune.MainActivity" />
+                android:value="xyz.communeapp.commune.Activities.MainActivity" />
         </activity>
         <activity
-            android:name=".GroupActivity"
+            android:name=".Activities.MyGroupsActivities.GroupActivities.GroupActivity"
             android:label="@string/title_activity_group">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="xyz.communeapp.commune.GroupsListViewActivity" />
+                android:value="xyz.communeapp.commune.Activities.MyGroupsActivities.GroupsListViewActivity" />
         </activity>
         <activity
-            android:name=".MemberListActivity"
+            android:name=".Activities.MyGroupsActivities.GroupActivities.GroupMembers.MemberListActivity"
             android:label="@string/title_activity_member_list"
-            android:parentActivityName=".GroupActivity"
+            android:parentActivityName=".Activities.MyGroupsActivities.GroupActivities.GroupActivity"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="xyz.communeapp.commune.GroupActivity" />
+                android:value="xyz.communeapp.commune.Activities.MyGroupsActivities.GroupActivities.GroupActivity" />
         </activity>
         <activity
-            android:name=".GroupIssuesActivity"
+            android:name=".Activities.MyGroupsActivities.GroupActivities.GroupIssues.GroupIssuesActivity"
             android:label="@string/title_activity_group_issues_acitivity"
-            android:parentActivityName=".GroupActivity"
+            android:parentActivityName=".Activities.MyGroupsActivities.GroupActivities.GroupActivity"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="xyz.communeapp.commune.GroupActivity" />
+                android:value="xyz.communeapp.commune.Activities.MyGroupsActivities.GroupActivities.GroupActivity" />
         </activity>
         <activity
-            android:name=".CreateIssueActivity"
+            android:name=".Activities.MyGroupsActivities.GroupActivities.GroupIssues.CreateIssueActivity"
             android:label="@string/title_activity_create_issue"
-            android:parentActivityName=".GroupIssuesActivity"
+            android:parentActivityName=".Activities.MyGroupsActivities.GroupActivities.GroupIssues.GroupIssuesActivity"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="xyz.communeapp.commune.GroupIssuesActivity" />
+                android:value="xyz.communeapp.commune.Activities.MyGroupsActivities.GroupActivities.GroupIssues.GroupIssuesActivity" />
         </activity>
         <activity
-            android:name=".MyIssueListViewActivity"
+            android:name=".Activities.IssueActivity.MyIssueListViewActivity"
             android:label="@string/title_activity_my_issue_list_view"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".Activities.MainActivity"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="xyz.communeapp.commune.MainActivity" />
+                android:value="xyz.communeapp.commune.Activities.MainActivity" />
         </activity>
         <activity
-            android:name=".IssueActivity"
+            android:name=".Activities.IssueActivity.IssueActivity"
             android:label="@string/title_activity_issue"
             android:theme="@style/AppTheme">
 

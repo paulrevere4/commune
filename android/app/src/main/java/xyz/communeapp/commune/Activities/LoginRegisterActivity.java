@@ -1,4 +1,4 @@
-package xyz.communeapp.commune;
+package xyz.communeapp.commune.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -39,16 +39,10 @@ public class LoginRegisterActivity extends AppCompatActivity {
     public void onResume() {
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
             // If the user is not logged in, start the login activity
-            startActivityForResult(
-                    AuthUI.getInstance()
-                            .createSignInIntentBuilder()
-                            .setProviders(
-                                    AuthUI.EMAIL_PROVIDER,
-                                    AuthUI.GOOGLE_PROVIDER,
-                                    AuthUI.FACEBOOK_PROVIDER)
-                            .build(),
-                    RC_SIGN_IN);
-        }else{
+            startActivityForResult(AuthUI.getInstance().createSignInIntentBuilder().setProviders
+                    (AuthUI.EMAIL_PROVIDER, AuthUI.GOOGLE_PROVIDER, AuthUI.FACEBOOK_PROVIDER)
+                    .build(), RC_SIGN_IN);
+        } else {
             // Move onto the main activity
             startMainActivity();
         }

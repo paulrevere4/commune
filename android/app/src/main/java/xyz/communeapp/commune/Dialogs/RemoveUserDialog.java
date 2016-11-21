@@ -1,4 +1,4 @@
-package xyz.communeapp.commune;
+package xyz.communeapp.commune.Dialogs;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -9,9 +9,7 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 
-/**
- * Created by Rabi on 11/19/16.
- */
+import xyz.communeapp.commune.R;
 
 public class RemoveUserDialog extends DialogFragment {
     // Use this instance of the interface to deliver action events
@@ -20,10 +18,6 @@ public class RemoveUserDialog extends DialogFragment {
     /* The activity that creates an instance of this dialog fragment must
     * implement this interface in order to receive event callbacks.
     * Each method passes the DialogFragment in case the host needs to query it. */
-
-    public interface RemoveNoticeDialogListener {
-        public void onRemoveDialogPositiveClick(DialogFragment dialog);
-    }
 
     // Override the Fragment.onAttach() method to instantiate the RemoveNoticeDialogListener
     @Override
@@ -35,8 +29,8 @@ public class RemoveUserDialog extends DialogFragment {
             mListener = (RemoveNoticeDialogListener) activity;
         } catch (ClassCastException e) {
             // The activity doesn't implement the interface, throw exception
-            throw new ClassCastException(activity.toString()
-                    + " must implement RemoveNoticeDialogListener");
+            throw new ClassCastException(activity.toString() + " must implement " +
+                    "RemoveNoticeDialogListener");
         }
     }
 
@@ -58,14 +52,17 @@ public class RemoveUserDialog extends DialogFragment {
                     public void onClick(DialogInterface dialog, int id) {
                         mListener.onRemoveDialogPositiveClick(RemoveUserDialog.this);
                     }
-                })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        RemoveUserDialog.this.getDialog().cancel();
-                    }
-                });
+                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                RemoveUserDialog.this.getDialog().cancel();
+            }
+        });
 
         // Create the AlertDialog object and return it
         return builder.create();
+    }
+
+    public interface RemoveNoticeDialogListener {
+        void onRemoveDialogPositiveClick(DialogFragment dialog);
     }
 }

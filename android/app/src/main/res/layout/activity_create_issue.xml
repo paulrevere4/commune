@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -10,71 +7,71 @@
 
 
     <EditText
+        android:id="@+id/issue_name_editText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/issue_name_editText"
-        android:hint="Issue Name"
-        android:maxLines="1"
-        android:textSize="18sp"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="14dp"
-        android:textAlignment="center"
-
+        android:ems="10"
         android:gravity="center_horizontal"
-        android:layout_gravity="center_horizontal" />
+        android:hint="Issue Name"
+        android:inputType="textPersonName"
+        android:maxLines="1"
+
+        android:textAlignment="center"
+        android:textSize="18sp" />
 
     <EditText
+        android:id="@+id/due_date_editText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="date"
-        android:ems="10"
-        android:id="@+id/due_date_editText"
-        android:hint="Select Due Date"
-        android:textAlignment="center"
-        android:focusable="false"
+        android:layout_gravity="center_horizontal"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="12dp"
-        android:layout_gravity="center_horizontal" />
+        android:ems="10"
+        android:focusable="false"
+        android:hint="Select Due Date"
+        android:inputType="date"
+        android:textAlignment="center" />
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:ems="10"
         android:id="@+id/issue_description_editText"
-        android:hint="Issue Details"
-        android:gravity="top|left"
-        android:layout_margin="8dp" />
-
-    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+        android:layout_margin="8dp"
         android:ems="10"
+        android:gravity="top|left"
+        android:hint="Issue Details"
+        android:inputType="textMultiLine" />
+
+    <EditText
         android:id="@+id/select_user_editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:ems="10"
         android:focusable="false"
         android:hint="Assign to member"
-        android:layout_margin="8dp" />
+        android:inputType="textPersonName" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <Button
-            android:text="Create"
+            android:id="@+id/create_issue_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/create_issue_button"
-            android:background="@color/authui_colorAccent"
-            android:textColor="@color/buttonTextColor"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginBottom="20dp" />
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@color/authui_colorAccent"
+            android:text="Create"
+            android:textColor="@color/buttonTextColor" />
 
     </RelativeLayout>
 

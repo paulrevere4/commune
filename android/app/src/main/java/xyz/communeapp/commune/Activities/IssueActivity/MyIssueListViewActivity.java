@@ -1,4 +1,4 @@
-package xyz.communeapp.commune;
+package xyz.communeapp.commune.Activities.IssueActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +18,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
+import xyz.communeapp.commune.ListAdapters.GroupListCustomAdapter;
+import xyz.communeapp.commune.R;
+
 public class MyIssueListViewActivity extends AppCompatActivity {
 
     private FirebaseUser mUser;
@@ -32,7 +35,8 @@ public class MyIssueListViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_issue_list_view);
         mUser = FirebaseAuth.getInstance().getCurrentUser();
-        mUserIssuesRef = FirebaseDatabase.getInstance().getReference().child("Users").child(mUser.getUid()).child("Issues");
+        mUserIssuesRef = FirebaseDatabase.getInstance().getReference().child("Users").child(mUser
+                .getUid()).child("Issues");
 
         issueNames = new ArrayList<>();
         issueIDs = new ArrayList<>();
@@ -43,14 +47,14 @@ public class MyIssueListViewActivity extends AppCompatActivity {
         ChildEventListener childEventListener = new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
-                if(dataSnapshot.child("Name").getValue() != null){
+                if (dataSnapshot.child("Name").getValue() != null) {
                     issueNames.add(dataSnapshot.child("Name").getValue().toString());
                     mAdapter.notifyDataSetChanged();
                 }
-                if(dataSnapshot.getKey()!= null){
+                if (dataSnapshot.getKey() != null) {
                     issueIDs.add(dataSnapshot.getKey());
                 }
-                if(dataSnapshot.child("GroupID").getValue() != null){
+                if (dataSnapshot.child("GroupID").getValue() != null) {
                     issueGroupIDs.add(dataSnapshot.child("GroupID").getValue().toString());
                 }
 
@@ -62,17 +66,18 @@ public class MyIssueListViewActivity extends AppCompatActivity {
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.child("Name").getValue() != null){
+                if (dataSnapshot.child("Name").getValue() != null) {
                     int i = issueNames.indexOf(dataSnapshot.child("Name").getValue().toString());
                     issueNames.remove(i);
                     mAdapter.notifyDataSetChanged();
                 }
-                if(dataSnapshot.getKey()!= null){
+                if (dataSnapshot.getKey() != null) {
                     int j = issueIDs.indexOf(dataSnapshot.getKey());
                     issueIDs.remove(j);
                 }
-                if(dataSnapshot.child("GroupID").getValue() != null){
-                    int k = issueGroupIDs.indexOf(dataSnapshot.child("GroupID").getValue().toString());
+                if (dataSnapshot.child("GroupID").getValue() != null) {
+                    int k = issueGroupIDs.indexOf(dataSnapshot.child("GroupID").getValue()
+                            .toString());
                     issueGroupIDs.remove(k);
                 }
             }
@@ -95,7 +100,7 @@ public class MyIssueListViewActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(MyIssueListViewActivity.this, IssueActivity.class);
-                intent.putExtra("ISSUE_ID",issueIDs.get(i));
+                intent.putExtra("ISSUE_ID", issueIDs.get(i));
                 intent.putExtra("GROUP_ID", issueGroupIDs.get(i));
                 startActivity(intent);
             }
@@ -109,6 +114,6 @@ public class MyIssueListViewActivity extends AppCompatActivity {
                 onBackPressed();
                 return true;
         }
-        return(super.onOptionsItemSelected(item));
+        return (super.onOptionsItemSelected(item));
     }
 }

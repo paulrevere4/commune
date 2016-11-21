@@ -1,4 +1,4 @@
-package xyz.communeapp.commune;
+package xyz.communeapp.commune.Activities.MyGroupsActivities.GroupActivities;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -18,6 +18,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import xyz.communeapp.commune.Activities.MyGroupsActivities.GroupActivities.GroupIssues.GroupIssuesActivity;
+
+
+import xyz.communeapp.commune.Activities.MyGroupsActivities.GroupActivities.GroupMembers
+        .MemberListActivity;
+import xyz.communeapp.commune.R;
+
 public class GroupActivity extends AppCompatActivity {
 
     private Context context;
@@ -27,10 +34,11 @@ public class GroupActivity extends AppCompatActivity {
     private String mGroupCreatorUID;
     private DatabaseReference mGroupRef;
 
-    private void leaveGroup(){
+    private void leaveGroup() {
         mGroupRef.child("Members").child(mUserUID).removeValue();
         mGroupRef.child("MonetaryContributions").child(mUserUID).removeValue();
-        FirebaseDatabase.getInstance().getReference().child("Users").child(mUserUID).child("Groups").child(mGroupID).removeValue();
+        FirebaseDatabase.getInstance().getReference().child("Users").child(mUserUID).child
+                ("Groups").child(mGroupID).removeValue();
         finish();
     }
 
@@ -41,13 +49,13 @@ public class GroupActivity extends AppCompatActivity {
 
         context = this;
 
-        Intent intent=this.getIntent();
+        Intent intent = this.getIntent();
 
         TextView group_name_textView = (TextView) findViewById(R.id.group_name_textView);
 
         TextView group_id_textView = (TextView) findViewById(R.id.group_id_textView);
 
-        if(intent !=null){
+        if (intent != null) {
             mGroupName = intent.getStringExtra("GROUP_NAME");
             mGroupID = intent.getStringExtra("GROUP_ID");
             group_name_textView.setText(mGroupName);
@@ -56,12 +64,13 @@ public class GroupActivity extends AppCompatActivity {
 
         mUserUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        mGroupRef = FirebaseDatabase.getInstance().getReference().child("Groups").child(mGroupID).getRef();
+        mGroupRef = FirebaseDatabase.getInstance().getReference().child("Groups").child(mGroupID)
+                .getRef();
 
         ValueEventListener listener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                mGroupCreatorUID =  dataSnapshot.child("CreatorUid").getValue().toString();
+                mGroupCreatorUID = dataSnapshot.child("CreatorUid").getValue().toString();
             }
 
             @Override
@@ -108,27 +117,21 @@ public class GroupActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if(mUserUID.equals(mGroupCreatorUID)){
-                    new AlertDialog.Builder(context)
-                            .setTitle("Leave Group")
-                            .setMessage("Creator of group cannot leave!")
-                            .setIcon(android.R.drawable.ic_dialog_alert)
-                            .show();
-                }else{
-                    new AlertDialog.Builder(context)
-                            .setTitle("Leave Group")
-                            .setMessage("Are you sure you want to leave this group?")
-                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    leaveGroup();
-                                }
-                            })
-                            .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                }
-                            })
-                            .setIcon(android.R.drawable.ic_dialog_alert)
-                            .show();
+                if (mUserUID.equals(mGroupCreatorUID)) {
+                    new AlertDialog.Builder(context).setTitle("Leave Group").setMessage("Creator " +
+                            "" + "of group cannot leave!").setIcon(android.R.drawable
+                            .ic_dialog_alert).show();
+                } else {
+                    new AlertDialog.Builder(context).setTitle("Leave Group").setMessage("Are you " +
+                            "" + "sure you want to leave this group?").setPositiveButton("Yes",
+                            new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            leaveGroup();
+                        }
+                    }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                        }
+                    }).setIcon(android.R.drawable.ic_dialog_alert).show();
                 }
             }
         });
@@ -141,6 +144,6 @@ public class GroupActivity extends AppCompatActivity {
                 onBackPressed();
                 return true;
         }
-        return(super.onOptionsItemSelected(item));
+        return (super.onOptionsItemSelected(item));
     }
 }

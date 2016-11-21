@@ -6,23 +6,22 @@
 
 
     <TextView
-        android:text="Would you like to add a dollar value to this issue?"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/mark_issue_complete_textView"
-        android:fontFamily="sans-serif"
-        android:textSize="24sp"
-        android:textAlignment="center"
         android:background="@color/authui_colorAccent"
-        android:textColor="@color/buttonTextColor" />
+        android:fontFamily="sans-serif"
+        android:text="Would you like to add a dollar value to this issue?"
+        android:textAlignment="center"
+        android:textColor="@color/buttonTextColor"
+        android:textSize="24sp" />
 
     <EditText
+        android:id="@+id/dollar_value"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
         android:ems="10"
-        android:id="@+id/dollar_value"
         android:hint="Dollar Value"
+        android:inputType="numberDecimal"
         android:textAlignment="center" />
 </LinearLayout>
 

@@ -1,4 +1,4 @@
-package xyz.communeapp.commune;
+package xyz.communeapp.commune.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,19 +18,24 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
+import xyz.communeapp.commune.Activities.MyGroupsActivities.GroupsListViewActivity;
+import xyz.communeapp.commune.Activities.IssueActivity.MyIssueListViewActivity;
+import xyz.communeapp.commune.Classes.User;
+import xyz.communeapp.commune.R;
+
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseUser mFirebaseUser;
     private FirebaseDatabase mFireDatabase;
     private User mUser;
 
-    private void startGroupsListViewActivity(){
+    private void startGroupsListViewActivity() {
         Intent intent = new Intent(this, GroupsListViewActivity.class);
         startActivity(intent);
     }
 
-    private void startIssueListViewActivity(){
-        Intent intent = new Intent(this,MyIssueListViewActivity.class);
+    private void startIssueListViewActivity() {
+        Intent intent = new Intent(this, MyIssueListViewActivity.class);
         startActivity(intent);
     }
 
@@ -75,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
             mUser = new User(mFirebaseUser, mFireDatabase);
             user_name.setText(mUser.getName());
             user_email.setText(mFirebaseUser.getEmail());
-            if(mFirebaseUser.getDisplayName() == null){
+            if (mFirebaseUser.getDisplayName() == null) {
                 logOut();
                 Intent intent = new Intent(this, LoginRegisterActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -98,12 +103,10 @@ public class MainActivity extends AppCompatActivity {
      * Logs a user out
      */
     private void logOut() {
-        AuthUI.getInstance()
-                .signOut(this)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    public void onComplete(@NonNull Task<Void> task) {
-                    }
-                });
+        AuthUI.getInstance().signOut(this).addOnCompleteListener(new OnCompleteListener<Void>() {
+            public void onComplete(@NonNull Task<Void> task) {
+            }
+        });
     }
 
     @Override

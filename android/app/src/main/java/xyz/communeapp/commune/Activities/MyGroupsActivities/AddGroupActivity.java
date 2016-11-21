@@ -1,4 +1,4 @@
-package xyz.communeapp.commune;
+package xyz.communeapp.commune.Activities.MyGroupsActivities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +9,9 @@ import android.widget.EditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
+import xyz.communeapp.commune.Classes.Group;
+import xyz.communeapp.commune.R;
+
 public class AddGroupActivity extends AppCompatActivity {
 
     private EditText name;  // Group name
@@ -16,7 +19,8 @@ public class AddGroupActivity extends AppCompatActivity {
 
     // Creates a group instance
     public void createGroup() {
-        Group newGroup = new Group(name.getText().toString(), emails.getText().toString(), FirebaseAuth.getInstance().getCurrentUser(), FirebaseDatabase.getInstance());
+        Group newGroup = new Group(name.getText().toString(), emails.getText().toString(),
+                FirebaseAuth.getInstance().getCurrentUser(), FirebaseDatabase.getInstance());
         finish(); // Quit the activity
     }
 

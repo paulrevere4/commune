@@ -1,4 +1,4 @@
-package xyz.communeapp.commune;
+package xyz.communeapp.commune.Activities.MyGroupsActivities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +19,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+
+import xyz.communeapp.commune.Activities.MyGroupsActivities.GroupActivities.GroupActivity;
+import xyz.communeapp.commune.ListAdapters.GroupListCustomAdapter;
+import xyz.communeapp.commune.R;
 
 public class GroupsListViewActivity extends AppCompatActivity {
 
@@ -59,7 +63,8 @@ public class GroupsListViewActivity extends AppCompatActivity {
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         database = FirebaseDatabase.getInstance();
-        groups_ref = database.getReference().child("Users").child(user.getUid()).child("Groups").getRef();
+        groups_ref = database.getReference().child("Users").child(user.getUid()).child("Groups")
+                .getRef();
 
         mobileArray = new ArrayList<>();
         final ArrayList<String> group_IDs = new ArrayList<>();
@@ -126,6 +131,6 @@ public class GroupsListViewActivity extends AppCompatActivity {
                 onBackPressed();
                 return true;
         }
-        return(super.onOptionsItemSelected(item));
+        return (super.onOptionsItemSelected(item));
     }
 }

@@ -1,4 +1,4 @@
-package xyz.communeapp.commune;
+package xyz.communeapp.commune.Activities.IssueActivity;
 
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -15,7 +15,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class IssueActivity extends AppCompatActivity implements MarkIssueCompleteDialog.NoticeDialogListener {
+import xyz.communeapp.commune.Dialogs.MarkIssueCompleteDialog;
+import xyz.communeapp.commune.R;
+
+public class IssueActivity extends AppCompatActivity implements MarkIssueCompleteDialog
+        .NoticeDialogListener {
 
     private String mIssueID;
     private String mUserUID;
@@ -34,36 +38,42 @@ public class IssueActivity extends AppCompatActivity implements MarkIssueComplet
     private String mIssueAssignedTo;
     private String mIssueGroup;
 
-    private void setCalculatedValue(float currentValue, float newValue, DatabaseReference ref, ValueEventListener listener){
+    private void setCalculatedValue(float currentValue, float newValue, DatabaseReference ref,
+                                    ValueEventListener listener) {
         ref.removeEventListener(listener);
-        float newTotal = currentValue+newValue;
-        FirebaseDatabase.getInstance().getReference().child("Groups").child(mIssueGroupID).child("MonetaryContributions").child(mUserUID).setValue(newTotal);
+        float newTotal = currentValue + newValue;
+        FirebaseDatabase.getInstance().getReference().child("Groups").child(mIssueGroupID).child
+                ("MonetaryContributions").child(mUserUID).setValue(newTotal);
     }
 
-    private void setValue(DatabaseReference ref, float value, ValueEventListener listener){
+    private void setValue(DatabaseReference ref, float value, ValueEventListener listener) {
         ref.setValue(value);
         ref.removeEventListener(listener);
     }
 
-    private void addMonetaryValue(final String value){
+    private void addMonetaryValue(final String value) {
         final float money = Float.parseFloat(value);
 
-        //FirebaseDatabase.getInstance().getReference().child("Groups").child(mIssueGroupID).child("MonetaryContributions").child(mUserUID).setValue(money);
+        //FirebaseDatabase.getInstance().getReference().child("Groups").child(mIssueGroupID)
+        // .child("MonetaryContributions").child(mUserUID).setValue(money);
 
-        final DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Groups").child(mIssueGroupID).child("MonetaryContributions").child(mUserUID).getRef();
+        final DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child
+                ("Groups").child(mIssueGroupID).child("MonetaryContributions").child(mUserUID)
+                .getRef();
 
 
         final ValueEventListener listener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.getValue() == null){
-                    setValue(ref,money,this);
-                }else{
+                if (dataSnapshot.getValue() == null) {
+                    setValue(ref, money, this);
+                } else {
                     String current = dataSnapshot.getValue().toString();
                     float currentF = Float.parseFloat(current);
-                    setCalculatedValue(currentF,money, ref, this);
+                    setCalculatedValue(currentF, money, ref, this);
                 }
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
@@ -74,12 +84,13 @@ public class IssueActivity extends AppCompatActivity implements MarkIssueComplet
 
     }
 
-    public void onDialogPositiveClick(DialogFragment dialog, String value){
+    public void onDialogPositiveClick(DialogFragment dialog, String value) {
         mUserUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         addMonetaryValue(value);
         mIssueRef.child("Completed").setValue("True");
-        if(mIssueAssignedTo != null){
-            FirebaseDatabase.getInstance().getReference().child("Users").child(mUserUID).child("Issues").child(mIssueID).child("Completed").setValue("True");
+        if (mIssueAssignedTo != null) {
+            FirebaseDatabase.getInstance().getReference().child("Users").child(mUserUID).child
+                    ("Issues").child(mIssueID).child("Completed").setValue("True");
         }
     }
 
@@ -88,7 +99,7 @@ public class IssueActivity extends AppCompatActivity implements MarkIssueComplet
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_issue);
 
-        if(getSupportActionBar() != null){
+        if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
@@ -103,37 +114,40 @@ public class IssueActivity extends AppCompatActivity implements MarkIssueComplet
         mIssueGroupTextView = (TextView) findViewById(R.id.issue_group_textView);
         mMarkIssueCompleteButton = (Button) findViewById(R.id.mark_as_complete_button);
 
-        mGroupRef = FirebaseDatabase.getInstance().getReference().child("Groups").child(mIssueGroupID).getRef();
+        mGroupRef = FirebaseDatabase.getInstance().getReference().child("Groups").child
+                (mIssueGroupID).getRef();
         mIssueRef = mGroupRef.child("Issues").child(mIssueID).getRef();
 
-        if(mGroupRef != null){
+        if (mGroupRef != null) {
             mGroupRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     mIssueGroup = dataSnapshot.child("Name").getValue().toString();
-                    mIssueGroupTextView.setText("Group: "+mIssueGroup);
+                    mIssueGroupTextView.setText("Group: " + mIssueGroup);
                 }
+
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
 
                 }
             });
         }
-        if(mIssueRef != null){
+        if (mIssueRef != null) {
             mIssueRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     mIssueName = dataSnapshot.child("Name").getValue().toString();
-                    mIssueNameTextView.setText("Issue Name: "+mIssueName);
+                    mIssueNameTextView.setText("Issue Name: " + mIssueName);
 
                     mIssueDueDate = dataSnapshot.child("DueDate").getValue().toString();
-                    mIssueDueDateTextView.setText("Due Date: "+mIssueDueDate);
+                    mIssueDueDateTextView.setText("Due Date: " + mIssueDueDate);
 
                     mIssueDescription = dataSnapshot.child("Description").getValue().toString();
-                    mIssueDescriptionTextView.setText("Description: "+mIssueDescription);
+                    mIssueDescriptionTextView.setText("Description: " + mIssueDescription);
 
-                    mIssueAssignedTo = dataSnapshot.child("AssignedTo").child("UserName").getValue().toString();
-                    mIssueAssignedToTextView.setText("Assigned To: "+mIssueAssignedTo);
+                    mIssueAssignedTo = dataSnapshot.child("AssignedTo").child("UserName")
+                            .getValue().toString();
+                    mIssueAssignedToTextView.setText("Assigned To: " + mIssueAssignedTo);
                 }
 
                 @Override
@@ -158,6 +172,6 @@ public class IssueActivity extends AppCompatActivity implements MarkIssueComplet
                 onBackPressed();
                 return true;
         }
-        return(super.onOptionsItemSelected(item));
+        return (super.onOptionsItemSelected(item));
     }
 }

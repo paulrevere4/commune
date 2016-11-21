@@ -1,4 +1,4 @@
-package xyz.communeapp.commune;
+package xyz.communeapp.commune.Classes;
 
 import android.util.Log;
 
@@ -13,10 +13,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Created by Rabi on 11/2/16.
- */
-
 public class Group {
 
     private String name;    // Group name
@@ -29,13 +25,6 @@ public class Group {
 
     }
 
-    private void createGroupInDatabase(){
-        this.databaseRef = database.getReference().child("Groups").push(); // Create a new group in the database
-        this.groupUID = databaseRef.getKey();
-        databaseRef.child("Name").setValue(name);   // Set the group name
-        databaseRef.child("CreatorUid").setValue(creator.getUid()); // Set the group creator Uid
-    }
-
     public Group(String name, String users, FirebaseUser creator, final FirebaseDatabase database) {
         this.name = name;
         this.creator = creator;
@@ -45,16 +34,26 @@ public class Group {
 
         final String[] user_emails_array = users.split(",");
 
-        final List<String> user_emails_array_list = new ArrayList<>(Arrays.asList(user_emails_array));
+        final List<String> user_emails_array_list = new ArrayList<>(Arrays.asList
+                (user_emails_array));
 
         user_emails_array_list.add(creator.getEmail());
 
-        addGroupToUsers(user_emails_array_list,this.name,this.databaseRef,this.groupUID);
+        addGroupToUsers(user_emails_array_list, this.name, this.databaseRef, this.groupUID);
     }
 
-    private void addUserToGroup(final DatabaseReference group_ref, final String UID){
+    private void createGroupInDatabase() {
+        this.databaseRef = database.getReference().child("Groups").push(); // Create a new group
+        // in the database
+        this.groupUID = databaseRef.getKey();
+        databaseRef.child("Name").setValue(name);   // Set the group name
+        databaseRef.child("CreatorUid").setValue(creator.getUid()); // Set the group creator Uid
+    }
+
+    private void addUserToGroup(final DatabaseReference group_ref, final String UID) {
         // Get user reference using uid
-        DatabaseReference user_ref = database.getReference().child("Users").child(UID).child("Name").getRef();
+        DatabaseReference user_ref = database.getReference().child("Users").child(UID).child
+                ("Name").getRef();
 
         user_ref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -71,16 +70,18 @@ public class Group {
         });
     }
 
-    private void addGroupToUsers(List<String> emails, final String groupName, final DatabaseReference group_ref, final String groupUID){
+    private void addGroupToUsers(List<String> emails, final String groupName, final
+    DatabaseReference group_ref, final String groupUID) {
         for (final String user : emails) {
-            database.getReference().child("Users").orderByChild("Email").equalTo(user).limitToFirst(1).addListenerForSingleValueEvent(new ValueEventListener() {
+            database.getReference().child("Users").orderByChild("Email").equalTo(user)
+                    .limitToFirst(1).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if (dataSnapshot.hasChildren()) {
                         // Find User Node
                         DataSnapshot firstChild = dataSnapshot.getChildren().iterator().next();
 
-                        Log.e("sdfsad",firstChild.getRef().toString());
+                        Log.e("sdfsad", firstChild.getRef().toString());
 
                         // Find user reference and add the new group
                         firstChild.getRef().child("Groups").child(groupUID).setValue(groupName);
@@ -90,14 +91,14 @@ public class Group {
 
                         addUserToGroup(group_ref, UID);
 
-                    }else{
-                        Log.e("test",user+" does not exist");
+                    } else {
+                        Log.e("test", user + " does not exist");
                     }
                 }
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
-                    Log.e("test",databaseError.getDetails());
+                    Log.e("test", databaseError.getDetails());
                 }
             });
         }
