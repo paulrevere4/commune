@@ -52,6 +52,8 @@ public class MemberListActivity extends AppCompatActivity implements AddUserDial
 
             }
         });
+        float value = 0;
+        FirebaseDatabase.getInstance().getReference().child("Groups").child(mGroupID).child("MonetaryContributions").child(UID).setValue(value);
     }
 
     @Override

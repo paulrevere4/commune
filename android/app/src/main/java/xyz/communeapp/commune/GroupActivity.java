@@ -1,19 +1,38 @@
 package xyz.communeapp.commune;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class GroupActivity extends AppCompatActivity {
 
-    Context context;
-    String mGroupName;
-    String mGroupID;
+    private Context context;
+    private String mGroupName;
+    private String mGroupID;
+    private String mUserUID;
+    private String mGroupCreatorUID;
+    private DatabaseReference mGroupRef;
+
+    private void leaveGroup(){
+        mGroupRef.child("Members").child(mUserUID).removeValue();
+        mGroupRef.child("MonetaryContributions").child(mUserUID).removeValue();
+        FirebaseDatabase.getInstance().getReference().child("Users").child(mUserUID).child("Groups").child(mGroupID).removeValue();
+        finish();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +54,28 @@ public class GroupActivity extends AppCompatActivity {
             group_id_textView.setText(mGroupID);
         }
 
+        mUserUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        mGroupRef = FirebaseDatabase.getInstance().getReference().child("Groups").child(mGroupID).getRef();
+
+        ValueEventListener listener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                mGroupCreatorUID =  dataSnapshot.child("CreatorUid").getValue().toString();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
+
+        mGroupRef.addValueEventListener(listener);
+
         Button members_button = (Button) findViewById(R.id.members_button);
         Button issues_button = (Button) findViewById(R.id.issues_button);
         Button resources_button = (Button) findViewById(R.id.resources_button);
+        Button leave_group_button = (Button) findViewById(R.id.leave_group_button);
 
         members_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +101,35 @@ public class GroupActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+            }
+        });
+
+        leave_group_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(mUserUID.equals(mGroupCreatorUID)){
+                    new AlertDialog.Builder(context)
+                            .setTitle("Leave Group")
+                            .setMessage("Creator of group cannot leave!")
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
+                }else{
+                    new AlertDialog.Builder(context)
+                            .setTitle("Leave Group")
+                            .setMessage("Are you sure you want to leave this group?")
+                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    leaveGroup();
+                                }
+                            })
+                            .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                }
+                            })
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
+                }
             }
         });
     }

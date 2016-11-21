@@ -51,6 +51,7 @@ public class CreateIssueActivity extends AppCompatActivity {
     private void createIssue(){
         Issue issue = new Issue();
         issue.setName(mNameEditText.getText().toString());
+        issue.setGroupID(mGroupID);
 
         if(mDueDateEditText.getText().toString().isEmpty())
             issue.setDueDate("NA");
@@ -111,7 +112,6 @@ public class CreateIssueActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear,
                                   int dayOfMonth) {
-                // TODO Auto-generated method stub
                 myCalendar.set(Calendar.YEAR, year);
                 myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);

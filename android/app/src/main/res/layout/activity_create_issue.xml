@@ -55,7 +55,7 @@
         android:ems="10"
         android:id="@+id/select_user_editText"
         android:focusable="false"
-        android:hint="Select User"
+        android:hint="Assign to member"
         android:layout_margin="8dp" />
 
     <RelativeLayout

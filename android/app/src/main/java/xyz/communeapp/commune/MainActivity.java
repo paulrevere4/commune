@@ -29,6 +29,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void startIssueListViewActivity(){
+        Intent intent = new Intent(this,MyIssueListViewActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,12 +44,13 @@ public class MainActivity extends AppCompatActivity {
 
         TextView user_name = (TextView) findViewById(R.id.user_name_textview);
         TextView user_email = (TextView) findViewById(R.id.user_email_textview);
-        Button my_tasks = (Button) findViewById(R.id.my_tasks);
+        Button my_issues = (Button) findViewById(R.id.my_issues);
         Button my_groups = (Button) findViewById(R.id.my_groups);
 
-        my_tasks.setOnClickListener(new View.OnClickListener() {
+        my_issues.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startIssueListViewActivity();
             }
         });
 

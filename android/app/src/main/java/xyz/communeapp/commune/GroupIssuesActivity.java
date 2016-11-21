@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.google.firebase.database.ChildEventListener;
@@ -79,19 +80,15 @@ public class GroupIssuesActivity extends AppCompatActivity {
         ListView issue_list = (ListView) findViewById(R.id.issues_list);
         issue_list.setAdapter(adapter);
 
-//        issue_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                String issue = String.valueOf(adapterView.getItemAtPosition(i));
-//                //mSelectedMemberUID = member_ids.get(i);
-////                if(mCurrentUserUID.equals(mGroupCreatorUID)){
-////                    mRemoveUserDialog.show(getSupportFragmentManager(), "RemoveUserFromGroupDialogFragment");
-////                }else{
-////                    Toast.makeText(MemberListActivity.this, "You do not have permission to delete user!", Toast.LENGTH_SHORT).show();
-////                }
-//                Toast.makeText(GroupIssuesActivity.this, issue, Toast.LENGTH_SHORT).show();
-//            }
-//        });
+        issue_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(GroupIssuesActivity.this, IssueActivity.class);
+                intent.putExtra("ISSUE_ID",issue_ids.get(i));
+                intent.putExtra("GROUP_ID",mGroupID);
+                startActivity(intent);
+            }
+        });
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.add_issue_fab);
         fab.setOnClickListener(new View.OnClickListener() {

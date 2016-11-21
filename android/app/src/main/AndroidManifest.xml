@@ -63,6 +63,21 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="xyz.communeapp.commune.GroupIssuesActivity" />
         </activity>
+        <activity
+            android:name=".MyIssueListViewActivity"
+            android:label="@string/title_activity_my_issue_list_view"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="xyz.communeapp.commune.MainActivity" />
+        </activity>
+        <activity
+            android:name=".IssueActivity"
+            android:label="@string/title_activity_issue"
+            android:theme="@style/AppTheme">
+
+        </activity>
     </application>
 
 </manifest>

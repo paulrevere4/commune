@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_issue"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="xyz.communeapp.commune.IssueActivity"
+        android:orientation="vertical">
+
+        <TextView
+            android:text="Issue Name:"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/issue_name_textView"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:textSize="24sp"
+            android:layout_margin="8dp" />
+
+        <TextView
+            android:text="Due Date:"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/due_date_textView"
+            android:layout_below="@+id/issue_name_textView"
+            android:layout_centerHorizontal="true"
+            android:textSize="24sp"
+            android:layout_margin="8dp" />
+
+        <TextView
+            android:text="Description: "
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/description_textView"
+            android:layout_below="@+id/due_date_textView"
+            android:layout_alignStart="@+id/issue_name_textView"
+            android:textSize="24sp"
+            android:layout_margin="8dp" />
+
+    <TextView
+        android:text="Assigned To: "
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/assigned_to_textView"
+        android:layout_below="@+id/description_textView"
+        android:layout_alignStart="@+id/description_textView"
+        android:textAlignment="viewStart"
+        android:textSize="24sp"
+        android:layout_margin="8dp" />
+
+    <TextView
+        android:text="Group: "
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/issue_group_textView"
+        android:textSize="24sp"
+        android:layout_margin="8dp" />
+
+    <Button
+        android:text="Mark As Complete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/mark_as_complete_button"
+        android:elevation="10dp"
+        android:background="@color/authui_colorAccent"
+        android:textColor="@color/buttonTextColor"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp" />
+</LinearLayout>
+

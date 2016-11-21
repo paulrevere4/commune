@@ -10,4 +10,6 @@
     <string name="title_activity_member_list">Group Members</string>
     <string name="title_activity_group_issues_acitivity">Group Issues</string>
     <string name="title_activity_create_issue">Create Issue</string>
+    <string name="title_activity_my_issue_list_view">My Issues</string>
+    <string name="title_activity_issue">Issue</string>
 </resources>

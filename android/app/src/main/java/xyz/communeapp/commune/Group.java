@@ -60,6 +60,8 @@ public class Group {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 group_ref.child("Members").child(UID).setValue(dataSnapshot.getValue());
+                float value = 0;
+                group_ref.child("MonetaryContributions").child(UID).setValue(value);
             }
 
             @Override

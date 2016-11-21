@@ -25,7 +25,7 @@ public class AddIssueToDatabase {
         mIssue.getIssueRef().child("DueDate").setValue(mIssue.getDueDate());
         mIssue.getIssueRef().child("Description").setValue(mIssue.getDescription());
         mIssue.getIssueRef().child("AssignedTo").child("UserID").setValue(mIssue.getAssigedToUID());
-        mIssue.getIssueRef().child("AssignedTo").child("UserName:").setValue(mIssue.getAssigedToName());
+        mIssue.getIssueRef().child("AssignedTo").child("UserName").setValue(mIssue.getAssigedToName());
         mIssue.getIssueRef().child("Completed").setValue(mIssue.getStatus());
     }
 
@@ -35,5 +35,6 @@ public class AddIssueToDatabase {
         userRef.child("DueDate").setValue(mIssue.getDueDate());
         userRef.child("Description").setValue(mIssue.getDescription());
         userRef.child("Completed").setValue(mIssue.getStatus());
+        userRef.child("GroupID").setValue(mIssue.getGroupID());
     }
 }
