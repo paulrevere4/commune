@@ -96,6 +96,9 @@ class IssuesTableViewController: UITableViewController {
 		if issue.completed == true {
 			cell.textLabel?.textColor = UIColor.lightGray
 			cell.detailTextLabel?.textColor = UIColor.lightGray
+		} else {
+			cell.textLabel?.textColor = UIColor.black
+			cell.detailTextLabel?.textColor = UIColor.black
 		}
 		
 		cell.textLabel?.text = issue.name!
@@ -128,11 +131,34 @@ class IssuesTableViewController: UITableViewController {
 			let issue = issues[indexPath.row]
 			let groupIssuesRef = FIRDatabase.database().reference(withPath: "Groups").child(groupID!).child("Issues").child(issue.issueID!)
 			groupIssuesRef.updateChildValues(["Completed" : true])
-			
 			if issue.assignedTo?.name != "NA" {
 				let userIssuesRef = FIRDatabase.database().reference(withPath: "Users").child((issue.assignedTo?.uid)!).child("Issues").child(issue.issueID!)
 				userIssuesRef.updateChildValues(["Completed" : true])
 			}
+			
+			let alert = UIAlertController(title: "Monetary Contribution", message: "If it cost anything to complete this issue, then enter the amount an press 'Yes'", preferredStyle: .alert)
+			
+			let addAction = UIAlertAction(title: "Add", style: .default) { action in
+				let valueTextField = alert.textFields![0]
+				let value = Float(valueTextField.text!)
+				let user = FIRAuth.auth()?.currentUser
+				
+				FIRDatabase.database().reference(withPath: "Groups").child(self.groupID!).child("MonetaryContributions").child((user?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
+					let contribution = snapshot.value as! Float
+					FIRDatabase.database().reference(withPath: "Groups").child(self.groupID!).child("MonetaryContributions").child((user?.uid)!).setValue(value! + contribution)
+				})
+
+			}
+			
+			let cancelAction = UIAlertAction(title: "No", style: .default)
+			
+			alert.addTextField()
+			alert.addAction(addAction)
+			alert.addAction(cancelAction)
+			
+			present(alert, animated: true, completion: nil)
+			
+			
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    

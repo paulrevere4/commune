@@ -45,6 +45,7 @@ class Group: NSObject {
 		// Check to see if the user is logged in through Facebook or email.
 		if createdBy?.displayName != nil {
 			groupRef.child("Members").setValue([(createdBy?.uid)! : (createdBy?.displayName)!])
+			groupRef.child("MonetaryContributions").setValue([(createdBy?.uid)! : 0.0])
 			usersRef.child((createdBy?.uid)!).child("Groups").child(groupRef.key).setValue(self.name)
 			addMembers(members: members, usersRef: usersRef, groupRef: groupRef)
 		} else {
@@ -55,6 +56,7 @@ class Group: NSObject {
 				for child in snapshot.children.allObjects as! [FIRDataSnapshot] {
 					let dict = child.value as! NSDictionary
 					groupRef.child("Members").setValue([child.key : dict["Name"]!])
+					groupRef.child("MonetaryContributions").setValue([child.key : 0.0])
 					usersRef.child(child.key).child("Groups").child(groupRef.key).setValue(self.name)
 				}
 				self.addMembers(members: self.members, usersRef: usersRef, groupRef: groupRef)
@@ -65,19 +67,26 @@ class Group: NSObject {
 	// Query the databse to find all the matching users and then add them to the group.
 	func addMembers(members: Array<String>, usersRef: FIRDatabaseReference, groupRef: FIRDatabaseReference) -> Void {
 		for member in members {
-			usersRef.queryOrdered(byChild: "Email").queryEqual(toValue: member).observeSingleEvent(of: .value, with: { snapshot in
-				if !snapshot.exists() {
-					print("USER NOT FOUND")
-				}
+			usersRef.observeSingleEvent(of: .value, with: { (snapshot) in
+				var found = false
 				for child in snapshot.children.allObjects as! [FIRDataSnapshot] {
-					print(child.key, groupRef.key, self.name)
 					let dict = child.value as! NSDictionary
-					groupRef.child("Members").child(child.key).setValue(dict["Name"]!)
-					let usersRef = FIRDatabase.database().reference(withPath: "Users")
-					usersRef.child(child.key).child("Groups").child(groupRef.key).setValue(self.name)
+					if dict["Email"] != nil {
+						if dict["Email"] as! String == member {
+							groupRef.child("Members").child(child.key).setValue(dict["Name"]!)
+							groupRef.child("MonetaryContributions").child(child.key).setValue(0.0)
+							usersRef.child(child.key).child("Groups").child(groupRef.key).setValue(self.name)
+							found = true
+						}
+					}
+				}
+				
+				if found == false {
+					print("User not found")
 				}
 			})
 		}
 	}
+	
 	
 }

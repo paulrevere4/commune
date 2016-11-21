@@ -143,9 +143,15 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
 			
 			if error == nil {
 				// Store user info in database
-				self.usersRef.child((user?.uid)!).setValue(["Name":user?.displayName , "Email": user?.email])
-				// Display the Groups View once the user is logged in.
-				self.showGroupsView()
+				self.usersRef.observeSingleEvent(of: .value, with: { (snapshot) in
+					if snapshot.hasChild((user?.uid)!) {
+						self.showGroupsView()
+					} else {
+						self.usersRef.child((user?.uid)!).setValue(["Name":user?.displayName , "Email": user?.email])
+						self.showGroupsView()
+					}
+				})
+				
 			} else {
 				return
 			}

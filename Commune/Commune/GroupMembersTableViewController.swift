@@ -14,7 +14,8 @@ class GroupMembersTableViewController: UITableViewController {
 	var groupID: String? = nil
 	var groupName: String? = nil
 	var members: [User] = []
-	
+	var errorCount: Int = 0
+	let usersRef = FIRDatabase.database().reference(withPath: "Users")
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,23 +95,23 @@ class GroupMembersTableViewController: UITableViewController {
 		
 		let addAction = UIAlertAction(title: "Add", style: .default) { action in
 			let memberEmail = alert.textFields![0]
-			let usersRef = FIRDatabase.database().reference(withPath: "Users")
-				usersRef.queryOrdered(byChild: "Email").queryEqual(toValue: memberEmail.text!).observeSingleEvent(of: .value, with: { snapshot in
-				if !snapshot.exists() {
-					self.showErrorAlert(error: "user does not exist")
-				}
+			
+			self.usersRef.observeSingleEvent(of: .value, with: { (snapshot) in
+				
 				for child in snapshot.children.allObjects as! [FIRDataSnapshot] {
 					let dict = child.value as! NSDictionary
-					print(dict)
-					FIRDatabase.database().reference(withPath: "Groups").child(self.groupID!).child("Members").child(child.key).setValue(dict["Name"]!, withCompletionBlock: { (Error, FIRDatabaseReference) in
-						
-						if Error != nil {
-							self.showErrorAlert(error: "Error adding user to group.")
-						} else {
+					if dict["Email"] != nil {
+						if dict["Email"] as! String == memberEmail.text! {
+							FIRDatabase.database().reference(withPath: "Groups").child(self.groupID!).child("Members").child(child.key).setValue(dict["Name"]!)
 							FIRDatabase.database().reference(withPath: "Users").child(child.key).child("Groups").child(self.groupID!).setValue(self.groupName!)
+							FIRDatabase.database().reference(withPath: "Groups").child(self.groupID!).child("MonetaryContributions").child(child.key).setValue(0.0)
+							return
 						}
-					})
+					}
 				}
+				
+				self.showErrorAlert(error: "User does not exist")
+				return
 			})
 		}
 		
