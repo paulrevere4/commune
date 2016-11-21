@@ -87,6 +87,43 @@ class GroupsViewController: UIViewController, UITableViewDataSource, UITableView
 		navigationController?.pushViewController(vc, animated: true)
 		
 	}
+	
+	// Override to support editing the table view.
+	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
 		
+		let group = self.items[indexPath.row]
+		let groupRef = FIRDatabase.database().reference(withPath: "Groups").child(group.groupID!)
+		
+		if editingStyle == .delete {
+		
+			
+			let alert = UIAlertController(title: "Delete Group", message: "Are you sure you want to delete this group?", preferredStyle: .alert)
+			
+			let addAction = UIAlertAction(title: "Yes", style: .default) { action in
+				
+				
+				let userGroupRef = FIRDatabase.database().reference(withPath: "Users").child(self.currentUserUID!).child("Groups")
+				userGroupRef.child(group.groupID!).removeValue()
+				groupRef.removeValue()
+				
+			}
+			
+			let cancelAction = UIAlertAction(title: "No", style: .default)
+			
+			alert.addAction(addAction)
+			alert.addAction(cancelAction)
+			
+			present(alert, animated: true, completion: nil)
+
+			
+		} else if editingStyle == .insert {
+			// Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+		}
+	}
+	
+
+	
+	
+	
 
 }

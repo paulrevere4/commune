@@ -24,6 +24,7 @@ class GroupInfoViewController: UIViewController {
         // Do any additional setup after loading the view.
 		groupNameLabel.text = groupName
 		groupIDLabel.text = groupID
+		self.groupIDLabel.isHidden = true
 		
     }
 
