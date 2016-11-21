@@ -1,73 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_create_issue"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="xyz.communeapp.commune.CreateIssueActivity">
+    android:orientation="vertical"
+    android:weightSum="1">
+
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:layout_below="@+id/createIssueTitle"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="52dp"
-        android:id="@+id/issueNameEditText"
-        android:textAlignment="textStart"
-        android:hint="Name" />
+        android:id="@+id/issue_name_editText"
+        android:hint="Issue Name"
+        android:maxLines="1"
+        android:textSize="18sp"
+        android:layout_marginTop="14dp"
+        android:textAlignment="center"
 
+        android:gravity="center_horizontal"
+        android:layout_gravity="center_horizontal" />
 
     <EditText
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="10"
+        android:id="@+id/due_date_editText"
+        android:hint="Select Due Date"
+        android:textAlignment="center"
+        android:focusable="false"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_gravity="center_horizontal" />
+
+    <EditText
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
         android:ems="10"
-        android:layout_marginTop="21dp"
-        android:id="@+id/issueDescriptionEditText"
-        android:hint="Details"
-        android:textAlignment="textStart"
-        android:layout_below="@+id/issueNameEditText"
-        android:layout_alignStart="@+id/issueGroupEditText" />
-
-    <Button
-        android:text="CREATE"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/createIssueButton"
-        android:elevation="5dp"
-        android:textAlignment="center"
-        style="@style/FirebaseUI.Button"
-        android:textColor="@color/bodyTextColor"
-        android:layout_marginTop="110dp"
-        android:layout_below="@+id/issueGroupEditText"
-        android:layout_centerHorizontal="true" />
+        android:id="@+id/issue_description_editText"
+        android:hint="Issue Details"
+        android:gravity="top|left"
+        android:layout_margin="8dp" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:layout_marginTop="20dp"
-        android:id="@+id/issueGroupEditText"
-        android:textAlignment="textStart"
-        android:hint="Group"
-        android:layout_below="@+id/issueDescriptionEditText"
-        android:layout_alignStart="@+id/issueNameEditText" />
+        android:id="@+id/select_user_editText"
+        android:focusable="false"
+        android:hint="Select User"
+        android:layout_margin="8dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textStyle="normal|bold"
-        android:id="@+id/createIssueTitle"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="Create Issue" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-</RelativeLayout>
+        <Button
+            android:text="Create"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/create_issue_button"
+            android:background="@color/authui_colorAccent"
+            android:textColor="@color/buttonTextColor"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="20dp" />
+
+    </RelativeLayout>
+
+</LinearLayout>
