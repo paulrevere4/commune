@@ -36,8 +36,8 @@ public class ResourceListCustomAdapter extends ArrayAdapter<String> {
         TextView nameTextView = (TextView) customView.findViewById(R.id.resource_list_textView1);
         TextView detailsTextView = (TextView) customView.findViewById(R.id.resource_list_textView2);
 
-        nameTextView.setText("Name: "+name);
-        detailsTextView.setText("Details: "+details);
+        nameTextView.setText("Name: " + name);
+        detailsTextView.setText("Details: " + details);
 
         return customView;
     }

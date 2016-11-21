@@ -2,11 +2,11 @@
 
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="xyz.communeapp.commune.Activities.IssueActivity.IssueActivity">
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context="xyz.communeapp.commune.Activities.IssueActivity.IssueActivity">
 
     <TextView
         android:id="@+id/issue_name_textView"
@@ -16,7 +16,7 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="8dp"
         android:text="Issue Name:"
-        android:textSize="24sp" />
+        android:textSize="24sp"/>
 
     <TextView
         android:id="@+id/due_date_textView"
@@ -26,7 +26,7 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="8dp"
         android:text="Due Date:"
-        android:textSize="24sp" />
+        android:textSize="24sp"/>
 
     <TextView
         android:id="@+id/description_textView"
@@ -36,7 +36,7 @@
         android:layout_below="@+id/due_date_textView"
         android:layout_margin="8dp"
         android:text="Description: "
-        android:textSize="24sp" />
+        android:textSize="24sp"/>
 
     <TextView
         android:id="@+id/assigned_to_textView"
@@ -47,7 +47,7 @@
         android:layout_margin="8dp"
         android:text="Assigned To: "
         android:textAlignment="viewStart"
-        android:textSize="24sp" />
+        android:textSize="24sp"/>
 
     <TextView
         android:id="@+id/issue_group_textView"
@@ -55,7 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:text="Group: "
-        android:textSize="24sp" />
+        android:textSize="24sp"/>
 
     <Button
         android:id="@+id/mark_as_complete_button"
@@ -67,6 +67,6 @@
         android:background="@color/authui_colorAccent"
         android:elevation="10dp"
         android:text="Mark As Complete"
-        android:textColor="@color/buttonTextColor" />
+        android:textColor="@color/buttonTextColor"/>
 </LinearLayout>
 

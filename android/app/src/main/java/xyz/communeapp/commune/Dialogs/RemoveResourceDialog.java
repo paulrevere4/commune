@@ -11,10 +11,6 @@ import android.view.View;
 
 import xyz.communeapp.commune.R;
 
-/**
- * Created by Rabi on 11/21/16.
- */
-
 public class RemoveResourceDialog extends DialogFragment {
 
     // Use this instance of the interface to deliver action events

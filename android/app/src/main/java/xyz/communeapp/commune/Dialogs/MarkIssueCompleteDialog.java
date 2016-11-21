@@ -69,6 +69,7 @@ public class MarkIssueCompleteDialog extends DialogFragment {
 
     public interface NoticeDialogListener {
         void onDialogPositiveClick(DialogFragment dialog, String value);
+
         void onDialogNegativeClick(DialogFragment dialog);
     }
 }

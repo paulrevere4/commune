@@ -25,7 +25,8 @@ import xyz.communeapp.commune.Dialogs.RemoveResourceDialog;
 import xyz.communeapp.commune.ListAdapters.ResourceListCustomAdapter;
 import xyz.communeapp.commune.R;
 
-public class ResourceListView extends AppCompatActivity implements AddResourceDialog.NoticeDialogListener, RemoveResourceDialog.RemoveNoticeDialogListener {
+public class ResourceListView extends AppCompatActivity implements AddResourceDialog
+        .NoticeDialogListener, RemoveResourceDialog.RemoveNoticeDialogListener {
 
     private String mGroupID;
     private DatabaseReference mGroupRef;
@@ -41,7 +42,7 @@ public class ResourceListView extends AppCompatActivity implements AddResourceDi
     private String mSelectedResourceID;
 
     @Override
-    public void onRemoveDialogPositiveClick(DialogFragment dialog){
+    public void onRemoveDialogPositiveClick(DialogFragment dialog) {
         mGroupRef.child(mSelectedResourceID).removeValue();
         dialog.dismiss();
         recreate();
@@ -51,9 +52,10 @@ public class ResourceListView extends AppCompatActivity implements AddResourceDi
     // Fragment.onAttach() callback, which it uses to call the following methods
     // defined by the NoticeDialogFragment.RemoveNoticeDialogListener interface
     @Override
-    public void onDialogPositiveClick(DialogFragment dialog, final String name, final String details) {
-        Resource newResource = new Resource(name,details);
-        new ResourceCreator(mGroupRef,newResource).create();
+    public void onDialogPositiveClick(DialogFragment dialog, final String name, final String
+            details) {
+        Resource newResource = new Resource(name, details);
+        new ResourceCreator(mGroupRef, newResource).create();
         dialog.dismiss();
         recreate();
     }
@@ -66,7 +68,8 @@ public class ResourceListView extends AppCompatActivity implements AddResourceDi
         mGroupID = getIntent().getStringExtra("GROUP_ID");
         mGroupName = getIntent().getStringExtra("GROUP_NAME");
         mCurrentUserUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        DatabaseReference group_ref = FirebaseDatabase.getInstance().getReference().child("Groups").child(mGroupID).child("CreatorUid").getRef();
+        DatabaseReference group_ref = FirebaseDatabase.getInstance().getReference().child
+                ("Groups").child(mGroupID).child("CreatorUid").getRef();
 
         mGroupRef = FirebaseDatabase.getInstance().getReference().child("Groups").child(mGroupID)
                 .child("Resources").getRef();
@@ -81,15 +84,16 @@ public class ResourceListView extends AppCompatActivity implements AddResourceDi
         ChildEventListener childEventListener = new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
-                if(dataSnapshot.getKey() != null){
+                if (dataSnapshot.getKey() != null) {
                     mResourceIDs.add(dataSnapshot.getKey());
-                    if(dataSnapshot.child("Name").getValue() != null){
+                    if (dataSnapshot.child("Name").getValue() != null) {
                         mResources.add(dataSnapshot.child("Name").getValue().toString());
                         String name = dataSnapshot.child("Name").getValue().toString();
-                        if(dataSnapshot.child("Details").getValue() != null){
-                            mResourceDetails.add(dataSnapshot.child("Details").getValue().toString());
+                        if (dataSnapshot.child("Details").getValue() != null) {
+                            mResourceDetails.add(dataSnapshot.child("Details").getValue()
+                                    .toString());
                             String details = dataSnapshot.child("Details").getValue().toString();
-                            mResourceNamesAndDetails.add(name+"/"+details);
+                            mResourceNamesAndDetails.add(name + "/" + details);
                         }
                     }
                     mAdapter.notifyDataSetChanged();
@@ -113,12 +117,15 @@ public class ResourceListView extends AppCompatActivity implements AddResourceDi
 //                if(dataSnapshot.getKey() != null){
 //                    mResourceIDs.remove(mResourceIDs.indexOf(dataSnapshot.getKey()));
 //                    if(dataSnapshot.child("Name").getValue() != null){
-//                        mResources.remove(mResources.indexOf(dataSnapshot.child("Name").getValue().toString()));
+//                        mResources.remove(mResources.indexOf(dataSnapshot.child("Name")
+// .getValue().toString()));
 //                        String name = dataSnapshot.child("Name").getValue().toString();
 //                        if(dataSnapshot.child("Details").getValue() != null){
-//                            mResourceDetails.remove(mResourceDetails.indexOf(dataSnapshot.child("Details").getValue().toString()));
+//                            mResourceDetails.remove(mResourceDetails.indexOf(dataSnapshot.child
+// ("Details").getValue().toString()));
 //                            String details = dataSnapshot.child("Details").getValue().toString();
-//                            mResourceNamesAndDetails.remove(mResourceNamesAndDetails.indexOf(name+"/"+details));
+//                            mResourceNamesAndDetails.remove(mResourceNamesAndDetails.indexOf
+// (name+"/"+details));
 //                            mAdapter.notifyDataSetChanged();
 //                        }
 //                    }
@@ -146,7 +153,8 @@ public class ResourceListView extends AppCompatActivity implements AddResourceDi
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 mSelectedResourceID = mResourceIDs.get(i);
-                mRemoveResourceDialog.show(getSupportFragmentManager(),"RemoveResourceDialogFragment");
+                mRemoveResourceDialog.show(getSupportFragmentManager(),
+                        "RemoveResourceDialogFragment");
             }
         });
 
@@ -154,8 +162,7 @@ public class ResourceListView extends AppCompatActivity implements AddResourceDi
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mAddResourceDialog.show(getSupportFragmentManager(),
-                        "AddResourceDialogFragment");
+                mAddResourceDialog.show(getSupportFragmentManager(), "AddResourceDialogFragment");
             }
         });
     }
