@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:background="@color/authui_colorAccent"
         android:fontFamily="sans-serif"
-        android:text="Remove User From Group?"
+        android:text="Remove Resource From Group?"
         android:textAlignment="center"
         android:textColor="@color/buttonTextColor"
         android:textSize="24sp" />

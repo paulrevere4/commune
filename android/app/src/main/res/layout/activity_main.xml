@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="xyz.communeapp.commune.MainActivity">
+    tools:context="xyz.communeapp.commune.Activities.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,43 +32,44 @@
         </android.support.design.widget.AppBarLayout>
 
         <TextView
-            android:text="TextView"
+            android:id="@+id/user_name_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/user_name_textview"
-            android:fontFamily="sans-serif"
-            android:textSize="24sp"
-            android:typeface="normal"
             android:layout_gravity="center_horizontal"
-            android:paddingTop="8dp" />
+            android:fontFamily="sans-serif"
+            android:paddingTop="8dp"
+            android:text="TextView"
+            android:textSize="24sp"
+            android:typeface="normal" />
 
         <TextView
-            android:text="TextView"
+            android:id="@+id/user_email_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/user_email_textview"
-            android:fontFamily="sans-serif"
-            android:textSize="14sp"
-            android:typeface="normal"
             android:layout_gravity="center_horizontal"
-            android:paddingTop="8dp" />
+            android:fontFamily="sans-serif"
+            android:paddingTop="8dp"
+            android:text="TextView"
+            android:textSize="14sp"
+            android:typeface="normal" />
 
         <Button
-            android:text="My Issues"
+            android:id="@+id/my_issues"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/my_tasks"
             android:layout_marginTop="64dp"
             android:background="@color/authui_colorPrimaryDark"
-            android:textColor="@color/buttonTextColor"
-            android:fadingEdge="horizontal|vertical" />
+            android:fadingEdge="horizontal|vertical"
+            android:text="My Issues"
+            android:textColor="@color/buttonTextColor" />
+
         <Button
-            android:text="My Groups"
+            android:id="@+id/my_groups"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/my_groups"
             android:layout_marginTop="8dp"
             android:background="@color/authui_colorPrimaryDark"
+            android:text="My Groups"
             android:textColor="@color/buttonTextColor" />
 
 

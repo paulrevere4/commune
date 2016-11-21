@@ -4,14 +4,24 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/authui_colorAccent"
         android:fontFamily="sans-serif"
-        android:text="Remove User From Group?"
+        android:text="Would you like to add a dollar value to this issue?"
         android:textAlignment="center"
         android:textColor="@color/buttonTextColor"
         android:textSize="24sp" />
 
+    <EditText
+        android:id="@+id/dollar_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Dollar Value"
+        android:inputType="numberDecimal"
+        android:textAlignment="center" />
 </LinearLayout>
+

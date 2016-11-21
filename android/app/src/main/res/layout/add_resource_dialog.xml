@@ -10,17 +10,28 @@
         android:layout_height="wrap_content"
         android:background="@color/authui_colorAccent"
         android:fontFamily="sans-serif"
-        android:text="Add User To Group"
+        android:text="Add Resource To Group"
         android:textAlignment="center"
         android:textColor="@color/buttonTextColor"
         android:textSize="24sp" />
 
     <EditText
-        android:id="@+id/add_user_email"
+        android:id="@+id/resource_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="User Email Address"
-        android:inputType="textEmailAddress"
-        android:textAlignment="center" />
+        android:hint="Name"
+        android:inputType="text"
+        android:textAlignment="textStart" />
+
+    <EditText
+        android:id="@+id/resource_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Details"
+        android:inputType="textMultiLine"
+        android:textAlignment="textStart"
+        android:singleLine="false"
+        android:selectAllOnFocus="false" />
 </LinearLayout>
