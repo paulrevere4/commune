@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class GroupInfoViewController: UIViewController {
 	
@@ -47,6 +48,32 @@ class GroupInfoViewController: UIViewController {
 		vc.groupID = self.groupID
 		navigationController?.pushViewController(vc, animated: true)
 	}
+	
+	@IBAction func showResourcesButtonPressed(_ sender: Any) {
+		let vc = storyboard?.instantiateViewController(withIdentifier: "ResourcesViewController") as! ResourceTableViewController
+		
+		vc.groupID = self.groupID
+		navigationController?.pushViewController(vc, animated: true)
+	}
+	
+	@IBAction func leaveGroupButtonPressed(_ sender: Any) {
+		let user = FIRAuth.auth()?.currentUser
+		
+		let userGroupsRef = FIRDatabase.database().reference(withPath: "Users").child((user?.uid)!).child("Groups")
+		userGroupsRef.child(self.groupID!).removeValue()
+		
+		let groupMembers = FIRDatabase.database().reference(withPath: "Groups").child(self.groupID!).child("Members")
+		groupMembers.observeSingleEvent(of: .value, with: { snapshot in
+			for child in snapshot.children.allObjects as! [FIRDataSnapshot] {
+				if child.key == user?.uid {
+					groupMembers.child(child.key).removeValue()
+				}
+			}
+		})
+		
+		navigationController?.popViewController(animated: true)
+	}
+	
     /*
     // MARK: - Navigation
 

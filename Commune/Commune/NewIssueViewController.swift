@@ -32,7 +32,7 @@ class NewIssueViewController: UIViewController, UIPickerViewDataSource, UIPicker
 		groupRef.observe(.value, with: { snapshot in
 			
 			var newMembers: [User] = []
-			newMembers.append(User(uid: "INVALID", name: "None"))
+			newMembers.append(User(uid: "NA", name: "NA"))
 			for child in snapshot.children.allObjects as! [FIRDataSnapshot] {
 				print(child.key, child.value!)
 				let newMember = User(uid: child.key, name: child.value as! String)
@@ -70,6 +70,8 @@ class NewIssueViewController: UIViewController, UIPickerViewDataSource, UIPicker
 			dateFormatter.dateFormat = "MM/dd/yy"
 			let dateString = dateFormatter.string(from: self.dueDatePicker.date)
 			
+			print(self.selectedUser!)
+			print(self.selectedUser?.name, self.selectedUser?.uid)
 			let issue = Issue(name: self.nameTextField.text!, description: self.descriptionTextField.text, dueDate: dateString, assignedTo: self.selectedUser!)
 			
 			issue.addIssueToDB(groupID: self.groupID!)

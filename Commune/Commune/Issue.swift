@@ -16,7 +16,8 @@ class Issue: NSObject {
 	var assignedTo: User? = User(uid: "NA", name: "NA")
 	var issueID: String? = nil
 	var creatorID: String? = nil
-	var completed: Bool? = false
+	var completed: String? = "False"
+	var groupID: String? = nil
 	
 	
 	init(name: String, description: String, dueDate: String, assignedTo: User) {
@@ -43,36 +44,40 @@ class Issue: NSObject {
 		self.desc = description
 	}
 	
-	init(name: String, description: String, dueDate: String, assignedTo: User, issueID: String, completed: Bool) {
+	init(name: String, description: String, dueDate: String, assignedTo: User, issueID: String, completed: String, groupID: String) {
 		self.name = name
 		self.desc = description
 		self.dueDate = dueDate
 		self.assignedTo = assignedTo
 		self.issueID = issueID
 		self.completed = completed
+		self.groupID = groupID
 	}
 	
-	init(name: String, description: String, assignedTo: User, issueID: String, completed: Bool) {
+	init(name: String, description: String, assignedTo: User, issueID: String, completed: String, groupID: String) {
 		self.name = name
 		self.desc = description
 		self.assignedTo = assignedTo
 		self.issueID = issueID
 		self.completed = completed
+		self.groupID = groupID
 	}
 	
-	init(name: String, description: String, dueDate: String, issueID: String, completed: Bool) {
+	init(name: String, description: String, dueDate: String, issueID: String, completed: String, groupID: String) {
 		self.name = name
 		self.desc = description
 		self.dueDate = dueDate
 		self.issueID = issueID
 		self.completed = completed
+		self.groupID = groupID
 	}
 	
-	init(name: String, description: String, issueID: String, completed: Bool) {
+	init(name: String, description: String, issueID: String, completed: String, groupID: String) {
 		self.name = name
 		self.desc = description
 		self.issueID = issueID
 		self.completed = completed
+		self.groupID = groupID
 	}
 	
 	
@@ -88,7 +93,7 @@ class Issue: NSObject {
 		
 		if assignedTo?.name != "NA" {
 			let userRef = FIRDatabase.database().reference(withPath: "Users").child((assignedTo?.uid)!).child("Issues")
-			userRef.child(issueRef.key).setValue(["Name" : self.name!, "Description" : self.desc!, "DueDate" : self.dueDate!, "Completed" : self.completed!])
+			userRef.child(issueRef.key).setValue(["Name" : self.name!, "Description" : self.desc!, "DueDate" : self.dueDate!, "Completed" : self.completed!, "GroupID" : groupID])
 		}
 		
 	}

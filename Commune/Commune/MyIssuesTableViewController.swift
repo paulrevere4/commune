@@ -1,24 +1,26 @@
 //
-//  IssuesTableViewController.swift
+//  MyIssuesTableViewController.swift
 //  Commune
 //
-//  Created by Mukul Surajiwale on 11/19/16.
+//  Created by Mukul Surajiwale on 11/21/16.
 //  Copyright © 2016 Mukul Surajiwale. All rights reserved.
 //
 
 import UIKit
 import Firebase
 
-class IssuesTableViewController: UITableViewController {
+class MyIssuesTableViewController: UITableViewController {
 	
-	var groupID: String? = nil
+	let user = FIRAuth.auth()?.currentUser
 	var issues: [Issue] = []
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-
-		let issuesRef = FIRDatabase.database().reference(withPath: "Groups").child(groupID!).child("Issues")
 		
+//		FIRDatabase.database().reference().child("Users").child((self.user?.uid)!).child("Issues").observe(.value, with: { snapshot in
+//			print(snapshot)
+//		})
+		let issuesRef = FIRDatabase.database().reference(withPath: "Users").child((self.user?.uid)!).child("Issues")
 		issuesRef.observe(.value, with: { snapshot in
 			
 			var newIssues: [Issue] = []
@@ -36,13 +38,13 @@ class IssuesTableViewController: UITableViewController {
 							let user = User(uid: userDict.value(forKey: "UserID") as! String, name: userDict.value(forKey: "UserName") as! String)
 							let newIssue = Issue(name: dict.value(forKey: "Name") as! String, description: dict.value(forKey: "Description") as! String,
 							                     dueDate: dict.value(forKey: "DueDate") as! String, assignedTo: user, issueID: child.key,
-							                     completed: dict.value(forKey: "Completed") as! String, groupID: child.key)
+							                     completed: dict.value(forKey: "Completed") as! String, groupID: dict.value(forKey: "GroupID") as! String)
 							newIssues.insert(newIssue, at: 0)
 						} else {
 							// Has name, description, and due date
 							let newIssue = Issue(name: dict.value(forKey: "Name") as! String, description: dict.value(forKey: "Description") as! String,
 							                     dueDate: dict.value(forKey: "DueDate") as! String, issueID: child.key,
-							                     completed: dict.value(forKey: "Completed") as! String, groupID: child.key)
+							                     completed: dict.value(forKey: "Completed") as! String, groupID: dict.value(forKey: "GroupID") as! String)
 							newIssues.insert(newIssue, at: 0)
 						}
 					} else {
@@ -51,12 +53,12 @@ class IssuesTableViewController: UITableViewController {
 							let userDict = dict["AssignedTo"] as! NSDictionary
 							let user = User(uid: userDict.value(forKey: "UserID") as! String, name: userDict.value(forKey: "UserName") as! String)
 							let newIssue = Issue(name: dict.value(forKey: "Name") as! String, description: dict.value(forKey: "Description") as! String,
-							                     assignedTo: user, issueID: child.key, completed: dict.value(forKey: "Completed") as! String, groupID: child.key)
+							                     assignedTo: user, issueID: child.key, completed: dict.value(forKey: "Completed") as! String, groupID: dict.value(forKey: "GroupID") as! String)
 							newIssues.insert(newIssue, at: 0)
 						} else {
 							// Has name and description
 							let newIssue = Issue(name: dict.value(forKey: "Name") as! String, description: dict.value(forKey: "Description") as! String,
-							                     issueID: child.key, completed: dict.value(forKey: "Completed") as! String, groupID: child.key)
+							                     issueID: child.key, completed: dict.value(forKey: "Completed") as! String, groupID: dict.value(forKey: "GroupID") as! String)
 							newIssues.insert(newIssue, at: 0)
 						}
 					}
@@ -70,24 +72,22 @@ class IssuesTableViewController: UITableViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
 
-	@IBAction func addNewIssueButtonPressed(_ sender: Any) {
-		let vc = storyboard?.instantiateViewController(withIdentifier: "NewIssueViewController") as! NewIssueViewController
-		
-		vc.groupID = self.groupID
-		navigationController?.pushViewController(vc, animated: true)
-	}
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
         return issues.count
     }
 
+	
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "IssueCell", for: indexPath)
 
@@ -101,12 +101,13 @@ class IssuesTableViewController: UITableViewController {
 			cell.detailTextLabel?.textColor = UIColor.black
 		}
 		
-		cell.textLabel?.text = issue.name!
-		cell.detailTextLabel?.text = issue.desc!
+		
+		cell.textLabel?.text = issue.name
+		cell.detailTextLabel?.text = issue.desc
 
         return cell
     }
-
+	
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		tableView.deselectRow(at: indexPath, animated: true)
 		let row = indexPath.row
@@ -114,64 +115,35 @@ class IssuesTableViewController: UITableViewController {
 		let vc = storyboard?.instantiateViewController(withIdentifier: "IssueDetailViewController") as! IssueDetailViewController
 		
 		let issue = issues[row]
-
+		
 		vc.issueID = issue.issueID
-		vc.groupID = self.groupID
+		vc.groupID = issue.groupID
 		
 		navigationController?.pushViewController(vc, animated: true)
 		
 	}
 	
 
-	override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-		let deleteButton = UITableViewRowAction(style: .default, title: "Complete", handler: { (action, indexPath) in
-			self.tableView.dataSource?.tableView!(self.tableView, commit: .delete, forRowAt: indexPath)
-			return
-		})
-		deleteButton.backgroundColor = UIColor.green
-		return [deleteButton]
-	}
-	
+
+    /*
+    // Override to support conditional editing of the table view.
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        // Return false if you do not want the specified item to be editable.
+        return true
+    }
+    */
+
+    /*
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-			let issue = issues[indexPath.row]
-			let groupIssuesRef = FIRDatabase.database().reference(withPath: "Groups").child(groupID!).child("Issues").child(issue.issueID!)
-			groupIssuesRef.updateChildValues(["Completed" : "True"])
-			if issue.assignedTo?.name != "NA" {
-				let userIssuesRef = FIRDatabase.database().reference(withPath: "Users").child((issue.assignedTo?.uid)!).child("Issues").child(issue.issueID!)
-				userIssuesRef.updateChildValues(["Completed" : "True"])
-			}
-			
-			let alert = UIAlertController(title: "Monetary Contribution", message: "If it cost anything to complete this issue, then enter the amount an press 'Yes'", preferredStyle: .alert)
-			
-			let addAction = UIAlertAction(title: "Add", style: .default) { action in
-				let valueTextField = alert.textFields![0]
-				let value = Float(valueTextField.text!)
-				let user = FIRAuth.auth()?.currentUser
-				
-				FIRDatabase.database().reference(withPath: "Groups").child(self.groupID!).child("MonetaryContributions").child((user?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
-					let contribution = snapshot.value as! Float
-					FIRDatabase.database().reference(withPath: "Groups").child(self.groupID!).child("MonetaryContributions").child((user?.uid)!).setValue(value! + contribution)
-				})
-
-			}
-			
-			let cancelAction = UIAlertAction(title: "No", style: .default)
-			
-			alert.addTextField()
-			alert.addAction(addAction)
-			alert.addAction(cancelAction)
-			
-			present(alert, animated: true, completion: nil)
-			
-			
+            tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-
+    */
 
     /*
     // Override to support rearranging the table view.

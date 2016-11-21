@@ -20,6 +20,10 @@
 		1CB5EA161DC574860086A286 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CB5EA141DC574860086A286 /* LaunchScreen.storyboard */; };
 		1CB5EA211DC574860086A286 /* CommuneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB5EA201DC574860086A286 /* CommuneTests.swift */; };
 		1CB5EA2C1DC574860086A286 /* CommuneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB5EA2B1DC574860086A286 /* CommuneUITests.swift */; };
+		1CDB29951DE36ADA00D611AE /* IssueDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDB29941DE36ADA00D611AE /* IssueDetailViewController.swift */; };
+		1CDB29971DE3946E00D611AE /* MyIssuesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDB29961DE3946E00D611AE /* MyIssuesTableViewController.swift */; };
+		1CDB29991DE39F8B00D611AE /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDB29981DE39F8B00D611AE /* Resource.swift */; };
+		1CDB299C1DE3A06600D611AE /* ResourceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDB299B1DE3A06600D611AE /* ResourceTableViewController.swift */; };
 		1CE37A3B1DE0E8AE00FB39F4 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE37A3A1DE0E8AE00FB39F4 /* OptionsViewController.swift */; };
 		1CE37A3D1DE0EB2000FB39F4 /* logout.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CE37A3C1DE0EB2000FB39F4 /* logout.png */; };
 		1CE37A3F1DE13BCC00FB39F4 /* GroupInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE37A3E1DE13BCC00FB39F4 /* GroupInfoViewController.swift */; };
@@ -71,6 +75,10 @@
 		1CB5EA271DC574860086A286 /* CommuneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CommuneUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CB5EA2B1DC574860086A286 /* CommuneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommuneUITests.swift; sourceTree = "<group>"; };
 		1CB5EA2D1DC574860086A286 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1CDB29941DE36ADA00D611AE /* IssueDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueDetailViewController.swift; sourceTree = "<group>"; };
+		1CDB29961DE3946E00D611AE /* MyIssuesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyIssuesTableViewController.swift; sourceTree = "<group>"; };
+		1CDB29981DE39F8B00D611AE /* Resource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
+		1CDB299B1DE3A06600D611AE /* ResourceTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceTableViewController.swift; sourceTree = "<group>"; };
 		1CE37A3A1DE0E8AE00FB39F4 /* OptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
 		1CE37A3C1DE0EB2000FB39F4 /* logout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logout.png; sourceTree = "<group>"; };
 		1CE37A3E1DE13BCC00FB39F4 /* GroupInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GroupInfoViewController.swift; path = Assets.xcassets/GroupInfoViewController.swift; sourceTree = "<group>"; };
@@ -158,6 +166,7 @@
 				1C8B3DE91DC6A65600598715 /* User.swift */,
 				1C311D2D1DC6E9A7000D2C0B /* Group.swift */,
 				1CE37A471DE17DAC00FB39F4 /* Issue.swift */,
+				1CDB29981DE39F8B00D611AE /* Resource.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -194,6 +203,7 @@
 				1CE37A391DE0E88400FB39F4 /* Options View */,
 				1C24187C1DC597B60024CF4F /* Groups View */,
 				1CE37A421DE1622200FB39F4 /* Issues View */,
+				1CDB299A1DE3A04C00D611AE /* Resource View */,
 				1CB5EA0B1DC574860086A286 /* AppDelegate.swift */,
 				1CB5EA121DC574860086A286 /* Assets.xcassets */,
 				1CB5EA141DC574860086A286 /* LaunchScreen.storyboard */,
@@ -222,6 +232,14 @@
 			path = CommuneUITests;
 			sourceTree = "<group>";
 		};
+		1CDB299A1DE3A04C00D611AE /* Resource View */ = {
+			isa = PBXGroup;
+			children = (
+				1CDB299B1DE3A06600D611AE /* ResourceTableViewController.swift */,
+			);
+			name = "Resource View";
+			sourceTree = "<group>";
+		};
 		1CE37A391DE0E88400FB39F4 /* Options View */ = {
 			isa = PBXGroup;
 			children = (
@@ -235,6 +253,8 @@
 			children = (
 				1CE37A431DE1623700FB39F4 /* IssuesTableViewController.swift */,
 				1CE37A451DE1672F00FB39F4 /* NewIssueViewController.swift */,
+				1CDB29941DE36ADA00D611AE /* IssueDetailViewController.swift */,
+				1CDB29961DE3946E00D611AE /* MyIssuesTableViewController.swift */,
 			);
 			name = "Issues View";
 			sourceTree = "<group>";
@@ -553,13 +573,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				1CE37A3F1DE13BCC00FB39F4 /* GroupInfoViewController.swift in Sources */,
+				1CDB299C1DE3A06600D611AE /* ResourceTableViewController.swift in Sources */,
 				1C8B3DEA1DC6A65600598715 /* User.swift in Sources */,
 				1C0A1B991DC7FF2A004BA1B7 /* NewGroupViewController.swift in Sources */,
+				1CDB29991DE39F8B00D611AE /* Resource.swift in Sources */,
 				1CB5EA0E1DC574860086A286 /* ViewController.swift in Sources */,
+				1CDB29951DE36ADA00D611AE /* IssueDetailViewController.swift in Sources */,
 				1CE37A411DE1418D00FB39F4 /* GroupMembersTableViewController.swift in Sources */,
 				1CE37A3B1DE0E8AE00FB39F4 /* OptionsViewController.swift in Sources */,
 				1CB5EA0C1DC574860086A286 /* AppDelegate.swift in Sources */,
 				1CE37A441DE1623700FB39F4 /* IssuesTableViewController.swift in Sources */,
+				1CDB29971DE3946E00D611AE /* MyIssuesTableViewController.swift in Sources */,
 				1C311D2E1DC6E9A7000D2C0B /* Group.swift in Sources */,
 				1C24187A1DC597900024CF4F /* GroupsViewController.swift in Sources */,
 				1CE37A461DE1672F00FB39F4 /* NewIssueViewController.swift in Sources */,
