@@ -12,16 +12,17 @@ import android.widget.EditText;
 
 import xyz.communeapp.commune.R;
 
+/**
+ * Creates and returns a dialog to be displayed when user wants to add a new user to a group
+ */
 public class AddUserDialog extends DialogFragment {
-
-    // Use this instance of the interface to deliver action events
     NoticeDialogListener mListener;
 
-    /* The activity that creates an instance of this dialog fragment must
-    * implement this interface in order to receive event callbacks.
-    * Each method passes the DialogFragment in case the host needs to query it. */
-
-    // Override the Fragment.onAttach() method to instantiate the RemoveNoticeDialogListener
+    /**
+     * Callback function to attach a listener to the activity
+     *
+     * @param activity activity the listener is attached to
+     */
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -36,15 +37,22 @@ public class AddUserDialog extends DialogFragment {
         }
     }
 
+    /**
+     * Callback function triggered at dialog creation
+     *
+     * @param savedInstanceState background information
+     * @return a dialog to be displayed to the user
+     */
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        // Use the Builder class for convenient dialog construction
+        // Builder class for convenient dialog construction
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         // Get the layout inflater
         final LayoutInflater inflater = getActivity().getLayoutInflater();
         final View view = inflater.inflate(R.layout.add_user_to_group_dialog, null);
 
+        // Get the UI element of the UI that was inflated by the dialog
         final EditText email = (EditText) view.findViewById(R.id.add_user_email);
 
         // Inflate and set the layout for the dialog
@@ -67,6 +75,9 @@ public class AddUserDialog extends DialogFragment {
         return builder.create();
     }
 
+    /**
+     * Interface that the activity calling the dialog needs to implement to catch user actions
+     */
     public interface NoticeDialogListener {
         void onDialogPositiveClick(DialogFragment dialog, String email);
     }

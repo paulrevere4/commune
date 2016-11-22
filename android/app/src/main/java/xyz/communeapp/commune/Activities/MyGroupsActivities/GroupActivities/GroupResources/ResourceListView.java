@@ -18,8 +18,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
-import xyz.communeapp.commune.Classes.Resource;
-import xyz.communeapp.commune.Classes.ResourceCreator;
+import xyz.communeapp.commune.MainClasses.Resource;
+import xyz.communeapp.commune.MainClasses.ResourceCreator;
 import xyz.communeapp.commune.Dialogs.AddResourceDialog;
 import xyz.communeapp.commune.Dialogs.RemoveResourceDialog;
 import xyz.communeapp.commune.ListAdapters.ResourceListCustomAdapter;

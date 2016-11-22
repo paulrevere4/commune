@@ -1,4 +1,4 @@
-package xyz.communeapp.commune.Classes;
+package xyz.communeapp.commune.MainClasses;
 
 import android.util.Log;
 
@@ -18,19 +18,11 @@ import java.util.List;
  */
 public class Group {
 
-    private String name;    // Group name
-    private FirebaseUser creator; // Group creator
-    private DatabaseReference databaseRef; // Reference to the group in the database
+    private String name;
+    private FirebaseUser creator;
+    private DatabaseReference databaseRef;
     private FirebaseDatabase database;
     private String groupUID;
-
-
-    /**
-     * Default constructor
-     */
-    public Group() {
-
-    }
 
     /**
      * Constructor for creating a new group.
@@ -47,6 +39,7 @@ public class Group {
 
         createGroupInDatabase();
 
+        // Split the string into separate email addresses
         final String[] user_emails_array = users.split(",");
 
         final List<String> user_emails_array_list = new ArrayList<>(Arrays.asList
@@ -61,11 +54,13 @@ public class Group {
      * Creates a group in Firebase
      */
     private void createGroupInDatabase() {
-        this.databaseRef = database.getReference().child("Groups").push(); // Create a new group
-        // in the database
+        // Create a new group in the database
+        this.databaseRef = database.getReference().child("Groups").push();
         this.groupUID = databaseRef.getKey();
-        databaseRef.child("Name").setValue(name);   // Set the group name
-        databaseRef.child("CreatorUid").setValue(creator.getUid()); // Set the group creator Uid
+        // Set the group name
+        databaseRef.child("Name").setValue(name);
+        // Set the group creator Uid
+        databaseRef.child("CreatorUid").setValue(creator.getUid());
     }
 
     /**
@@ -135,6 +130,4 @@ public class Group {
             });
         }
     }
-
-
 }

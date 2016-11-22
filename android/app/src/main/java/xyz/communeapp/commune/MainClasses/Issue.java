@@ -1,11 +1,10 @@
-package xyz.communeapp.commune.Classes;
+package xyz.communeapp.commune.MainClasses;
 
 import com.google.firebase.database.DatabaseReference;
 
 /**
  * Holds information about an issue in the app
  */
-
 public class Issue {
 
     private String mIssueID; // Issue unique ID
