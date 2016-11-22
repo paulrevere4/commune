@@ -13,6 +13,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Holds information about a group in the app
+ */
 public class Group {
 
     private String name;    // Group name
@@ -21,10 +24,22 @@ public class Group {
     private FirebaseDatabase database;
     private String groupUID;
 
+
+    /**
+     * Default constructor
+     */
     public Group() {
 
     }
 
+    /**
+     * Constructor for creating a new group.
+     *
+     * @param name     Name of the group
+     * @param users    Users to be added to the group, string of emails delimited by ","
+     * @param creator  User who created the group
+     * @param database Database where the group will be held
+     */
     public Group(String name, String users, FirebaseUser creator, final FirebaseDatabase database) {
         this.name = name;
         this.creator = creator;
@@ -42,6 +57,9 @@ public class Group {
         addGroupToUsers(user_emails_array_list, this.name, this.databaseRef, this.groupUID);
     }
 
+    /**
+     * Creates a group in Firebase
+     */
     private void createGroupInDatabase() {
         this.databaseRef = database.getReference().child("Groups").push(); // Create a new group
         // in the database
@@ -50,6 +68,12 @@ public class Group {
         databaseRef.child("CreatorUid").setValue(creator.getUid()); // Set the group creator Uid
     }
 
+    /**
+     * Adds a user to the group
+     *
+     * @param group_ref DB reference to the group being added to
+     * @param UID       ID of the user being added
+     */
     private void addUserToGroup(final DatabaseReference group_ref, final String UID) {
         // Get user reference using uid
         DatabaseReference user_ref = database.getReference().child("Users").child(UID).child
@@ -70,6 +94,14 @@ public class Group {
         });
     }
 
+    /**
+     * Links a group to the members in it so they will receive notifications
+     *
+     * @param emails    List of strings of the emails of the users
+     * @param groupName Name of the group
+     * @param group_ref Reference to the group
+     * @param groupUID  ID of the group
+     */
     private void addGroupToUsers(List<String> emails, final String groupName, final
     DatabaseReference group_ref, final String groupUID) {
         for (final String user : emails) {
