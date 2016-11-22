@@ -15,7 +15,7 @@ public class ResourceCreator {
         mResource = resource;
     }
 
-    public void create(){
+    public void create() {
         String ID = mResourceGroupRef.push().getKey();
         mResourceGroupRef.child(ID).child("Name").setValue(mResource.getName());
         mResourceGroupRef.child(ID).child("Details").setValue(mResource.getDetails());
