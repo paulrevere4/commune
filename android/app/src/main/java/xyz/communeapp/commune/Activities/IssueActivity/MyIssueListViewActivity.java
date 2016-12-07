@@ -30,10 +30,17 @@ public class MyIssueListViewActivity extends AppCompatActivity {
     private ArrayList<String> issueNames;
     private ArrayList<String> issueIDs;
 
+    /**
+     * Callback function triggered during activity creation
+     *
+     * @param savedInstanceState background information
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_issue_list_view);
+
+        // Get user and database references
         mUser = FirebaseAuth.getInstance().getCurrentUser();
         mUserIssuesRef = FirebaseDatabase.getInstance().getReference().child("Users").child(mUser
                 .getUid()).child("Issues");
@@ -41,12 +48,14 @@ public class MyIssueListViewActivity extends AppCompatActivity {
         issueNames = new ArrayList<>();
         issueIDs = new ArrayList<>();
         issueGroupIDs = new ArrayList<>();
-
+        // List view adapter
         mAdapter = new GroupListCustomAdapter(this, issueNames);
 
+        // Create listener for database changes to read from database to the list view adapter
         ChildEventListener childEventListener = new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
+                // Get information from database and assign to variables
                 if (dataSnapshot.child("Name").getValue() != null) {
                     issueNames.add(dataSnapshot.child("Name").getValue().toString());
                     mAdapter.notifyDataSetChanged();
@@ -57,7 +66,6 @@ public class MyIssueListViewActivity extends AppCompatActivity {
                 if (dataSnapshot.child("GroupID").getValue() != null) {
                     issueGroupIDs.add(dataSnapshot.child("GroupID").getValue().toString());
                 }
-
             }
 
             @Override
@@ -91,14 +99,18 @@ public class MyIssueListViewActivity extends AppCompatActivity {
             }
         };
 
+        // Set the listener to a database reference containing issues assigned to user
         mUserIssuesRef.addChildEventListener(childEventListener);
 
+        // Get listview element and assign listview adapter
         ListView myIssuesList = (ListView) findViewById(R.id.my_issues_listView);
         myIssuesList.setAdapter(mAdapter);
 
+        // Set on-click-listener for each list view item
         myIssuesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                // Once an issue is selected, start the issue view activity to view the issue
                 Intent intent = new Intent(MyIssueListViewActivity.this, IssueActivity.class);
                 intent.putExtra("ISSUE_ID", issueIDs.get(i));
                 intent.putExtra("GROUP_ID", issueGroupIDs.get(i));
@@ -107,6 +119,12 @@ public class MyIssueListViewActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Callback function back press from menu
+     *
+     * @param item item that was selected in menu
+     * @return return success
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".Activities.MyGroupsActivities.GroupActivities.GroupMembers.MemberListActivity">
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                tools:context=".Activities.MyGroupsActivities.GroupActivities.GroupMembers.MemberListActivity">
 
     <ListView
         android:id="@+id/members_list"
@@ -24,6 +24,6 @@
         android:src="@mipmap/ic_add_black_48dp"
         app:backgroundTint="?attr/colorPrimaryDark"
         app:elevation="12dp"
-        app:rippleColor="?attr/colorButtonNormal" />
+        app:rippleColor="?attr/colorButtonNormal"/>
 
 </RelativeLayout>

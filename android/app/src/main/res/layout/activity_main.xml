@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context="xyz.communeapp.commune.Activities.MainActivity">
+                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                 xmlns:tools="http://schemas.android.com/tools"
+                                                 android:layout_width="match_parent"
+                                                 android:layout_height="match_parent"
+                                                 android:fitsSystemWindows="true"
+                                                 tools:context="xyz.communeapp.commune.Activities.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -40,7 +40,7 @@
             android:paddingTop="8dp"
             android:text="TextView"
             android:textSize="24sp"
-            android:typeface="normal" />
+            android:typeface="normal"/>
 
         <TextView
             android:id="@+id/user_email_textview"
@@ -51,7 +51,7 @@
             android:paddingTop="8dp"
             android:text="TextView"
             android:textSize="14sp"
-            android:typeface="normal" />
+            android:typeface="normal"/>
 
         <Button
             android:id="@+id/my_issues"
@@ -61,7 +61,7 @@
             android:background="@color/authui_colorPrimaryDark"
             android:fadingEdge="horizontal|vertical"
             android:text="My Issues"
-            android:textColor="@color/buttonTextColor" />
+            android:textColor="@color/buttonTextColor"/>
 
         <Button
             android:id="@+id/my_groups"
@@ -70,7 +70,7 @@
             android:layout_marginTop="8dp"
             android:background="@color/authui_colorPrimaryDark"
             android:text="My Groups"
-            android:textColor="@color/buttonTextColor" />
+            android:textColor="@color/buttonTextColor"/>
 
 
     </LinearLayout>

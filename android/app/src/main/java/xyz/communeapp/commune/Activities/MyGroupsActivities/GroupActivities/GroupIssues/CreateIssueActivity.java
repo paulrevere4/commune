@@ -24,8 +24,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
-import xyz.communeapp.commune.Classes.AddIssueToDatabase;
-import xyz.communeapp.commune.Classes.Issue;
+import xyz.communeapp.commune.MainClasses.AddIssueToDatabase;
+import xyz.communeapp.commune.MainClasses.Issue;
 import xyz.communeapp.commune.R;
 
 public class CreateIssueActivity extends AppCompatActivity {

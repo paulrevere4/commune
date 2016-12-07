@@ -9,7 +9,7 @@ import android.widget.EditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
-import xyz.communeapp.commune.Classes.Group;
+import xyz.communeapp.commune.MainClasses.Group;
 import xyz.communeapp.commune.R;
 
 public class AddGroupActivity extends AppCompatActivity {

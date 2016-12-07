@@ -11,15 +11,17 @@ import android.view.View;
 
 import xyz.communeapp.commune.R;
 
+/**
+ * Creates and returns a dialog to be displayed when user wants to remove a user from a group
+ */
 public class RemoveUserDialog extends DialogFragment {
-    // Use this instance of the interface to deliver action events
     RemoveNoticeDialogListener mListener;
 
-    /* The activity that creates an instance of this dialog fragment must
-    * implement this interface in order to receive event callbacks.
-    * Each method passes the DialogFragment in case the host needs to query it. */
-
-    // Override the Fragment.onAttach() method to instantiate the RemoveNoticeDialogListener
+    /**
+     * Callback function to attach a listener to the activity
+     *
+     * @param activity activity the listener is attached to
+     */
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -34,13 +36,21 @@ public class RemoveUserDialog extends DialogFragment {
         }
     }
 
+    /**
+     * Callback function triggered at dialog creation
+     *
+     * @param savedInstanceState background information
+     * @return a dialog to be displayed to the user
+     */
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        // Use the Builder class for convenient dialog construction
+        // Builder class for convenient dialog construction
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         // Get the layout inflater
         final LayoutInflater inflater = getActivity().getLayoutInflater();
+
+        // Get the UI elements from the UI that was inflated by the dialog
         final View view = inflater.inflate(R.layout.remove_user_from_group_dialog, null);
 
         // Inflate and set the layout for the dialog
@@ -62,6 +72,9 @@ public class RemoveUserDialog extends DialogFragment {
         return builder.create();
     }
 
+    /**
+     * Interface that the activity calling the dialog needs to implement to catch user actions
+     */
     public interface RemoveNoticeDialogListener {
         void onRemoveDialogPositiveClick(DialogFragment dialog);
     }

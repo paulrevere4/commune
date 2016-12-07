@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
 
     <TextView
@@ -13,7 +13,7 @@
         android:text="Would you like to add a dollar value to this issue?"
         android:textAlignment="center"
         android:textColor="@color/buttonTextColor"
-        android:textSize="24sp" />
+        android:textSize="24sp"/>
 
     <EditText
         android:id="@+id/dollar_value"
@@ -22,6 +22,6 @@
         android:ems="10"
         android:hint="Dollar Value"
         android:inputType="numberDecimal"
-        android:textAlignment="center" />
+        android:textAlignment="center"/>
 </LinearLayout>
 
