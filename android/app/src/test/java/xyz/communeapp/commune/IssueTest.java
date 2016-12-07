@@ -2,14 +2,14 @@ package xyz.communeapp.commune;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 import xyz.communeapp.commune.MainClasses.Issue;
+
+import static org.junit.Assert.assertEquals;
 
 public class IssueTest {
 
     @Test
-    public static void constructorTest () {
+    public static void constructorTest() {
         Issue issue = new Issue();
         assertEquals(issue.getIssueID(), null);
         assertEquals(issue.getName(), null);
@@ -23,7 +23,7 @@ public class IssueTest {
     }
 
     @Test
-    public static void populateObjectTest () {
+    public static void populateObjectTest() {
         Issue issue = new Issue();
 
         issue.setIssueID("fakeID");
